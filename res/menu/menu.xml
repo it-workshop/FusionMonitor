@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/edit_mode"
+          android:checkable="true"
+          android:icon="@drawable/ic_action_edit"
+          android:title="Edit mode"
+          android:showAsAction="withText"/>
+    <item android:id="@+id/add_empty"
+          android:icon="@drawable/ic_action_new"
+          android:title="Add empty widget"
+          android:showAsAction="ifRoom"/>
+</menu>
