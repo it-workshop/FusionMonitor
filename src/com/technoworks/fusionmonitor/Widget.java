@@ -15,7 +15,7 @@ import android.view.View;
 public class Widget extends View
 {
 
-    public static final int PADDING_DP = 5;
+    public static final int PADDING_DP = 0;
 
     private int inset;
 

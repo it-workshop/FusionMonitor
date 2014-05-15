@@ -5,7 +5,7 @@
           android:checkable="true"
           android:icon="@drawable/ic_action_edit"
           android:title="Edit mode"
-          android:showAsAction="withText"/>
+          android:showAsAction="ifRoom|withText"/>
     <item android:id="@+id/add_empty"
           android:icon="@drawable/ic_action_new"
           android:title="Add empty widget"
