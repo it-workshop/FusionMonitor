@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class MonitorActivity extends Activity
 {
     public static final int APPROXIMATE_CELL_SIZE_DP = 50;
+    public static final float VERTICAL_CORRECTION = 0.935f; //A workaround! Requires fixing!
 
     public RelativeLayout rootLayout;
 
@@ -67,6 +68,8 @@ public class MonitorActivity extends Activity
             line.getPaint().setStyle(Paint.Style.STROKE);
             backgroundElements[i + mColumns - 1] = line;
         }
+
+        mCellHeight *= VERTICAL_CORRECTION; //A workaround! Requires fixing!
 
         LayerDrawable background = new LayerDrawable(backgroundElements);
 
