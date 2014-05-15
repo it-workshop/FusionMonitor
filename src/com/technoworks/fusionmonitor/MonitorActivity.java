@@ -22,11 +22,12 @@ public class MonitorActivity extends Activity
 
     public RelativeLayout rootLayout;
 
-    private float mCellWidth;
-    private float mCellHeight;
+    public float mCellWidth;
+    public float mCellHeight;
     private int mColumns;
     private int mRows;
     private Point mDisplaySize;
+    private ArrayList<Widget> mWidgets;
     public float mScreenDensity;
 
     @Override
@@ -34,6 +35,7 @@ public class MonitorActivity extends Activity
     {
         super.onCreate(savedInstanceState);
 
+        mWidgets = new ArrayList<Widget>();
         DisplayMetrics metrics = new DisplayMetrics();
         Display display = getWindow().getWindowManager().getDefaultDisplay();
         display.getMetrics(metrics);
@@ -94,6 +96,9 @@ public class MonitorActivity extends Activity
             case R.id.add_empty:
                 addWidget();
                 return true;
+            case R.id.edit_mode:
+                for(Widget widget : mWidgets)
+                    widget.toggleEditMode();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -107,17 +112,16 @@ public class MonitorActivity extends Activity
         return line;
     }
 
-    Widget widget;
-
     private void addWidget()
     {
-        widget = new Widget(this);
+        Widget widget = new Widget(this);
         widget.setLayoutParams(new RelativeLayout.LayoutParams((int) mCellWidth*5, (int) mCellHeight*10));
         widget.setX(mCellWidth);
         widget.setY(mCellHeight*2);
         //widget.setMinimumWidth((int) (mCellWidth*5));
         //widget.setMinimumHeight((int) (mCellHeight*10));
         rootLayout.addView(widget);
+        mWidgets.add(widget);
     }
 }
 
