@@ -10,15 +10,17 @@ import android.graphics.drawable.shapes.PathShape;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.*;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MonitorActivity extends Activity
 {
     public static final int APPROXIMATE_CELL_SIZE_DP = 50;
-    public static final float VERTICAL_CORRECTION = 0.935f; //A workaround! Requires fixing!
+    public static final float VERTICAL_CORRECTION = 0.925f; //A workaround! Requires fixing!
 
     public RelativeLayout rootLayout;
 
@@ -26,6 +28,7 @@ public class MonitorActivity extends Activity
     public float mCellHeight;
     private int mColumns;
     private int mRows;
+    private Rect mBoundaries;
     private Point mDisplaySize;
     private ArrayList<Widget> mWidgets;
     public float mScreenDensity;
@@ -44,6 +47,7 @@ public class MonitorActivity extends Activity
         display.getSize(mDisplaySize);
         mColumns = Math.round(mDisplaySize.x / (APPROXIMATE_CELL_SIZE_DP * mScreenDensity));
         mRows = Math.round(mDisplaySize.y / (APPROXIMATE_CELL_SIZE_DP * mScreenDensity));
+        mBoundaries = new Rect(0, 0, mColumns, mRows);
         mCellWidth = (float) mDisplaySize.x / mColumns;
         mCellHeight = (float) mDisplaySize.y / mRows;
 
@@ -115,13 +119,42 @@ public class MonitorActivity extends Activity
     private void addWidget()
     {
         Widget widget = new Widget(this);
-        widget.setLayoutParams(new RelativeLayout.LayoutParams((int) mCellWidth*5, (int) mCellHeight*10));
-        widget.setX(mCellWidth);
-        widget.setY(mCellHeight*2);
+        if(!findPlacement(widget))
+        {
+            Toast.makeText(this, "No room for new widget", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        widget.setPlacement();
         //widget.setMinimumWidth((int) (mCellWidth*5));
         //widget.setMinimumHeight((int) (mCellHeight*10));
         rootLayout.addView(widget);
         mWidgets.add(widget);
+    }
+
+    private boolean findPlacement(Widget fittingWidget)
+    {
+        for(int i = 0; i < mRows; i++)
+            for(int j = 0; j < mColumns; j++)
+            {
+                fittingWidget.mPlacement.offsetTo(j, i);
+                if(checkPlacement(fittingWidget))
+                    return true;
+            }
+        return false;
+    }
+
+    private boolean checkPlacement(Widget checkingWidget)
+    {
+        if(!mBoundaries.contains(checkingWidget.mPlacement))
+            return false;
+        for (Widget widget : mWidgets)
+        {
+            if(widget.equals(checkingWidget))
+                continue;
+            if(Rect.intersects(widget.mPlacement, checkingWidget.mPlacement))
+                return false;
+        }
+        return true;
     }
 }
 

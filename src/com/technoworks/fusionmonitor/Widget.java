@@ -3,6 +3,7 @@ package com.technoworks.fusionmonitor;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.LayerDrawable;
@@ -11,6 +12,7 @@ import android.graphics.drawable.shapes.RectShape;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 /**
  * Created by Всеволод on 11.05.2014.
@@ -18,6 +20,7 @@ import android.view.View;
 public class Widget extends View
 {
     public static final int PADDING_DP = 5;
+    protected static final Rect DEFAULT_PLACEMENT = new Rect(0, 0, 3, 3);
 
     protected OnTouchListener mInnerListener = null;
     protected EditModeTouchListener mEditModeTouchListener;
@@ -26,9 +29,13 @@ public class Widget extends View
     private boolean mIsInEditMode;
     private MonitorActivity mMonitorActivity;
 
+    public Rect mPlacement;
+
     public Widget(Context context)
     {
         super(context);
+
+        mPlacement = new Rect(DEFAULT_PLACEMENT);
 
         mEditModeTouchListener = new EditModeTouchListener();
         mMonitorActivity = (MonitorActivity) context;
@@ -85,6 +92,13 @@ public class Widget extends View
         }
     }
 
+    protected void setPlacement()
+    {
+        setX(mMonitorActivity.mCellWidth*mPlacement.left);
+        setY(mMonitorActivity.mCellHeight*mPlacement.top);
+        setLayoutParams(new RelativeLayout.LayoutParams((int) (mMonitorActivity.mCellWidth*mPlacement.width()), (int) (mMonitorActivity.mCellHeight*mPlacement.height())));
+    }
+
     protected class EditModeTouchListener implements OnTouchListener
     {
         public static final int MODE_DRAG = 0;
@@ -102,7 +116,6 @@ public class Widget extends View
         @Override
         public boolean onTouch(View v, MotionEvent event)
         {
-            Log.wtf("event", event.toString());
             if(event.getActionMasked() == MotionEvent.ACTION_DOWN)
             {
                 mMode = 0;
@@ -133,9 +146,8 @@ public class Widget extends View
             {
                 if(mMode == MODE_DRAG)
                 {
-                    v.setX(mMonitorActivity.mCellWidth*Math.round(v.getX()/mMonitorActivity.mCellWidth));
-                    v.setY(mMonitorActivity.mCellHeight*Math.round(v.getY()/mMonitorActivity.mCellHeight));
-                    Log.d("Align", v.getX() + " " + v.getY());
+                    v.setX(mMonitorActivity.mCellWidth * Math.round(v.getX() / mMonitorActivity.mCellWidth));
+                    v.setY(mMonitorActivity.mCellHeight * Math.round(v.getY() / mMonitorActivity.mCellHeight));
                 }
             }
             return false;
