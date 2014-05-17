@@ -32,6 +32,7 @@ public class MonitorActivity extends Activity
     private Point mDisplaySize;
     private ArrayList<Widget> mWidgets;
     public float mScreenDensity;
+    private boolean mEditMode;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -50,6 +51,7 @@ public class MonitorActivity extends Activity
         mBoundaries = new Rect(0, 0, mColumns, mRows);
         mCellWidth = (float) mDisplaySize.x / mColumns;
         mCellHeight = (float) mDisplaySize.y / mRows;
+        mEditMode = false;
 
         ShapeDrawable[] backgroundElements = new ShapeDrawable[mColumns + mRows - 1];
 
@@ -101,8 +103,11 @@ public class MonitorActivity extends Activity
                 addWidget();
                 return true;
             case R.id.edit_mode:
+                mEditMode = !mEditMode;
+                item.setTitle(mEditMode ? R.string.edit_mode_on : R.string.edit_mode_off);
                 for(Widget widget : mWidgets)
-                    widget.toggleEditMode();
+                    widget.setEditMode(mEditMode);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -125,6 +130,7 @@ public class MonitorActivity extends Activity
             return;
         }
         widget.setPlacement();
+        widget.setEditMode(mEditMode);
         //widget.setMinimumWidth((int) (mCellWidth*5));
         //widget.setMinimumHeight((int) (mCellHeight*10));
         rootLayout.addView(widget);
@@ -136,14 +142,14 @@ public class MonitorActivity extends Activity
         for(int i = 0; i < mRows; i++)
             for(int j = 0; j < mColumns; j++)
             {
-                fittingWidget.mPlacement.offsetTo(j, i);
+                fittingWidget.move(j, i);
                 if(checkPlacement(fittingWidget))
                     return true;
             }
         return false;
     }
 
-    private boolean checkPlacement(Widget checkingWidget)
+    public boolean checkPlacement(Widget checkingWidget)
     {
         if(!mBoundaries.contains(checkingWidget.mPlacement))
             return false;

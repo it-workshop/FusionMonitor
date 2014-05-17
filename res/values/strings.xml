@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FusionMonitor</string>
+    <string name="edit_mode_on">Edit mode on</string>
+    <string name="edit_mode_off">Edit mode off</string>
 </resources>

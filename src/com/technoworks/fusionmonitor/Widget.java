@@ -63,40 +63,37 @@ public class Widget extends View
         setOnTouchListener(mInnerListener);
     }
 
-    public void editModeOn()
+    public void setEditMode(boolean editMode)
     {
-        Log.d("Edit mode", "On");
-        mIsInEditMode = true;
-        setOnTouchListener(mEditModeTouchListener);
-    }
-
-    public void editModeOff()
-    {
-        Log.d("Edit mode", "Off");
-        mIsInEditMode = false;
-        setOnTouchListener(mInnerListener);
-    }
-
-    public void toggleEditMode()
-    {
-        Log.d("Edit mode", "Toggle");
-        if(mIsInEditMode)
-        {
-            setOnTouchListener(mInnerListener);
-            mIsInEditMode = false;
-        }
-        else
-        {
+        if(editMode)
             setOnTouchListener(mEditModeTouchListener);
-            mIsInEditMode = true;
-        }
+        else
+            setOnTouchListener(mInnerListener);
     }
 
     protected void setPlacement()
     {
-        setX(mMonitorActivity.mCellWidth*mPlacement.left);
+        setX(mMonitorActivity.mCellWidth * mPlacement.left);
         setY(mMonitorActivity.mCellHeight*mPlacement.top);
         setLayoutParams(new RelativeLayout.LayoutParams((int) (mMonitorActivity.mCellWidth*mPlacement.width()), (int) (mMonitorActivity.mCellHeight*mPlacement.height())));
+    }
+
+    protected void move(int left, int top, int right, int bottom)
+    {
+        mPlacement.set(left, top, right, bottom);
+        setPlacement();
+    }
+
+    protected void move(Rect r)
+    {
+        mPlacement.set(r);
+        setPlacement();
+    }
+
+    protected void move(int left, int top)
+    {
+        mPlacement.offsetTo(left, top);
+        setPlacement();
     }
 
     protected class EditModeTouchListener implements OnTouchListener
@@ -144,10 +141,12 @@ public class Widget extends View
             }
             else if(event.getActionMasked() == MotionEvent.ACTION_UP)
             {
+                Rect oldPlacement = new Rect(mPlacement);
                 if(mMode == MODE_DRAG)
                 {
-                    v.setX(mMonitorActivity.mCellWidth * Math.round(v.getX() / mMonitorActivity.mCellWidth));
-                    v.setY(mMonitorActivity.mCellHeight * Math.round(v.getY() / mMonitorActivity.mCellHeight));
+                    ((Widget) v).move(Math.round(v.getX() / mMonitorActivity.mCellWidth), Math.round(v.getY() / mMonitorActivity.mCellHeight));
+                    if(!mMonitorActivity.checkPlacement((Widget) v))
+                        ((Widget) v).move(oldPlacement);
                 }
             }
             return false;
