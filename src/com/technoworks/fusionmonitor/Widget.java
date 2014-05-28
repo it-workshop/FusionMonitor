@@ -74,7 +74,7 @@ public class Widget extends View
     protected void setPlacement()
     {
         setX(mMonitorActivity.mCellWidth * mPlacement.left);
-        setY(mMonitorActivity.mCellHeight*mPlacement.top);
+        setY(mMonitorActivity.mCellHeight * mPlacement.top);
         setLayoutParams(new RelativeLayout.LayoutParams((int) (mMonitorActivity.mCellWidth*mPlacement.width()), (int) (mMonitorActivity.mCellHeight*mPlacement.height())));
     }
 
@@ -109,6 +109,11 @@ public class Widget extends View
         private int mMode;
         private float mRelativeInitX;
         private float mRelativeInitY;
+        private float mInitHeight;
+        private float mInitWidth;
+
+        private float dx;
+        private float dy;
 
         @Override
         public boolean onTouch(View v, MotionEvent event)
@@ -127,6 +132,8 @@ public class Widget extends View
 
                 mRelativeInitX = event.getX();
                 mRelativeInitY = event.getY();
+                mInitHeight = v.getLayoutParams().height;
+                mInitWidth = v.getLayoutParams().width;
 
                 return true;
             }
@@ -137,17 +144,45 @@ public class Widget extends View
                     v.setX(v.getX()+event.getX()-mRelativeInitX);
                     v.setY(v.getY()+event.getY()-mRelativeInitY);
                 }
+
+                if((mMode & MODE_RESIZE_TOP) == MODE_RESIZE_TOP)
+                {
+                    dy = event.getY()-mRelativeInitY;
+                    v.setY(v.getY() + dy);
+                    v.setLayoutParams(new RelativeLayout.LayoutParams(v.getLayoutParams().width, Math.round(v.getLayoutParams().height-dy)));
+                }
+
+                if((mMode & MODE_RESIZE_LEFT) == MODE_RESIZE_LEFT)
+                {
+                    dx = event.getX()-mRelativeInitX;
+                    v.setX(v.getX() + dx);
+                    v.setLayoutParams(new RelativeLayout.LayoutParams(Math.round(v.getLayoutParams().width - dx), v.getLayoutParams().height));
+                }
+
+                if((mMode & MODE_RESIZE_BOTTOM) == MODE_RESIZE_BOTTOM)
+                {
+                    dy = event.getY()-mRelativeInitY;
+                    v.setLayoutParams(new RelativeLayout.LayoutParams(v.getLayoutParams().width, (int) (mInitHeight+dy)));
+                }
+
+                if((mMode & MODE_RESIZE_RIGHT) == MODE_RESIZE_RIGHT)
+                {
+                    dx = event.getX()-mRelativeInitX;
+                    v.setLayoutParams(new RelativeLayout.LayoutParams((int) (mInitWidth + dx), v.getLayoutParams().height));
+                }
+
                 return true;
             }
             else if(event.getActionMasked() == MotionEvent.ACTION_UP)
             {
                 Rect oldPlacement = new Rect(mPlacement);
-                if(mMode == MODE_DRAG)
-                {
-                    ((Widget) v).move(Math.round(v.getX() / mMonitorActivity.mCellWidth), Math.round(v.getY() / mMonitorActivity.mCellHeight));
-                    if(!mMonitorActivity.checkPlacement((Widget) v))
-                        ((Widget) v).move(oldPlacement);
-                }
+                int left = Math.round(v.getX() / mMonitorActivity.mCellWidth);
+                int top = Math.round(v.getY() / mMonitorActivity.mCellHeight);
+                int right = left + Math.round(v.getLayoutParams().width / mMonitorActivity.mCellWidth);
+                int bottom = top + Math.round(v.getLayoutParams().height / mMonitorActivity.mCellHeight);
+                ((Widget) v).move(left, top, right, bottom);
+                if(!mMonitorActivity.checkPlacement((Widget) v))
+                    ((Widget) v).move(oldPlacement);
             }
             return false;
         }
