@@ -122,7 +122,8 @@ public class MonitorActivity extends Activity
 
     private void addWidget()
     {
-        Widget widget = new Widget(this);
+        //Widget widget = new Widget(this);
+        Widget widget = new TextWidget(this);
         if (!findPlacement(widget))
         {
             Toast.makeText(this, "No room for new widget", Toast.LENGTH_SHORT).show();
