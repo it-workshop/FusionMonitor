@@ -1,17 +1,16 @@
 package com.technoworks.fusionmonitor;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.graphics.*;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.PathShape;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.*;
+import android.view.Display;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -60,17 +59,17 @@ public class MonitorActivity extends Activity
         //fill.setBounds(0, 0, mDisplaySize.x, mDisplaySize.y);
         backgroundElements[0] = fill;
 
-        for(int i = 1; i < mColumns; i++)
+        for (int i = 1; i < mColumns; i++)
         {
-            ShapeDrawable line = new ShapeDrawable(new PathShape(generateLine(mCellWidth*i, 0, mCellWidth*i, mDisplaySize.y), mDisplaySize.x, mDisplaySize.y));
+            ShapeDrawable line = new ShapeDrawable(new PathShape(generateLine(mCellWidth * i, 0, mCellWidth * i, mDisplaySize.y), mDisplaySize.x, mDisplaySize.y));
             line.setBounds(0, 0, mDisplaySize.x, mDisplaySize.y);
             line.getPaint().setColor(Color.LTGRAY);
             line.getPaint().setStyle(Paint.Style.STROKE);
             backgroundElements[i] = line;
         }
-        for(int i = 1; i < mRows; i++)
+        for (int i = 1; i < mRows; i++)
         {
-            ShapeDrawable line = new ShapeDrawable(new PathShape(generateLine(0, mCellHeight*i, mDisplaySize.x, mCellHeight*i), mDisplaySize.x, mDisplaySize.y));
+            ShapeDrawable line = new ShapeDrawable(new PathShape(generateLine(0, mCellHeight * i, mDisplaySize.x, mCellHeight * i), mDisplaySize.x, mDisplaySize.y));
             line.setBounds(0, 0, mDisplaySize.x, mDisplaySize.y);
             line.getPaint().setColor(Color.LTGRAY);
             line.getPaint().setStyle(Paint.Style.STROKE);
@@ -105,7 +104,7 @@ public class MonitorActivity extends Activity
             case R.id.edit_mode:
                 mEditMode = !mEditMode;
                 item.setTitle(mEditMode ? R.string.edit_mode_on : R.string.edit_mode_off);
-                for(Widget widget : mWidgets)
+                for (Widget widget : mWidgets)
                     widget.setEditMode(mEditMode);
                 return true;
             default:
@@ -124,7 +123,7 @@ public class MonitorActivity extends Activity
     private void addWidget()
     {
         Widget widget = new Widget(this);
-        if(!findPlacement(widget))
+        if (!findPlacement(widget))
         {
             Toast.makeText(this, "No room for new widget", Toast.LENGTH_SHORT).show();
             return;
@@ -139,11 +138,11 @@ public class MonitorActivity extends Activity
 
     private boolean findPlacement(Widget fittingWidget)
     {
-        for(int i = 0; i < mRows; i++)
-            for(int j = 0; j < mColumns; j++)
+        for (int i = 0; i < mRows; i++)
+            for (int j = 0; j < mColumns; j++)
             {
                 fittingWidget.move(j, i);
-                if(checkPlacement(fittingWidget))
+                if (checkPlacement(fittingWidget))
                     return true;
             }
         return false;
@@ -151,13 +150,13 @@ public class MonitorActivity extends Activity
 
     public boolean checkPlacement(Widget checkingWidget)
     {
-        if(!mBoundaries.contains(checkingWidget.mPlacement))
+        if (!mBoundaries.contains(checkingWidget.mPlacement))
             return false;
         for (Widget widget : mWidgets)
         {
-            if(widget.equals(checkingWidget))
+            if (widget.equals(checkingWidget))
                 continue;
-            if(Rect.intersects(widget.mPlacement, checkingWidget.mPlacement))
+            if (Rect.intersects(widget.mPlacement, checkingWidget.mPlacement))
                 return false;
         }
         return true;

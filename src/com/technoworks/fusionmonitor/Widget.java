@@ -9,7 +9,6 @@ import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -65,7 +64,7 @@ public class Widget extends View
 
     public void setEditMode(boolean editMode)
     {
-        if(editMode)
+        if (editMode)
             setOnTouchListener(mEditModeTouchListener);
         else
             setOnTouchListener(mInnerListener);
@@ -75,7 +74,7 @@ public class Widget extends View
     {
         setX(mMonitorActivity.mCellWidth * mPlacement.left);
         setY(mMonitorActivity.mCellHeight * mPlacement.top);
-        setLayoutParams(new RelativeLayout.LayoutParams((int) (mMonitorActivity.mCellWidth*mPlacement.width()), (int) (mMonitorActivity.mCellHeight*mPlacement.height())));
+        setLayoutParams(new RelativeLayout.LayoutParams((int) (mMonitorActivity.mCellWidth * mPlacement.width()), (int) (mMonitorActivity.mCellHeight * mPlacement.height())));
     }
 
     protected void move(int left, int top, int right, int bottom)
@@ -118,17 +117,17 @@ public class Widget extends View
         @Override
         public boolean onTouch(View v, MotionEvent event)
         {
-            if(event.getActionMasked() == MotionEvent.ACTION_DOWN)
+            if (event.getActionMasked() == MotionEvent.ACTION_DOWN)
             {
                 mMode = 0;
-                if(event.getY() < mInset *RESIZE_BORDERS_INSET_MULTIPLIER)
-                    mMode +=MODE_RESIZE_TOP;
-                if(event.getX() < mInset *RESIZE_BORDERS_INSET_MULTIPLIER)
-                    mMode +=MODE_RESIZE_LEFT;
-                if(event.getY() > v.getHeight() - mInset *RESIZE_BORDERS_INSET_MULTIPLIER)
-                    mMode +=MODE_RESIZE_BOTTOM;
-                if(event.getX() > v.getWidth() - mInset *RESIZE_BORDERS_INSET_MULTIPLIER)
-                    mMode +=MODE_RESIZE_RIGHT;
+                if (event.getY() < mInset * RESIZE_BORDERS_INSET_MULTIPLIER)
+                    mMode += MODE_RESIZE_TOP;
+                if (event.getX() < mInset * RESIZE_BORDERS_INSET_MULTIPLIER)
+                    mMode += MODE_RESIZE_LEFT;
+                if (event.getY() > v.getHeight() - mInset * RESIZE_BORDERS_INSET_MULTIPLIER)
+                    mMode += MODE_RESIZE_BOTTOM;
+                if (event.getX() > v.getWidth() - mInset * RESIZE_BORDERS_INSET_MULTIPLIER)
+                    mMode += MODE_RESIZE_RIGHT;
 
                 mRelativeInitX = event.getX();
                 mRelativeInitY = event.getY();
@@ -137,43 +136,43 @@ public class Widget extends View
 
                 return true;
             }
-            else if(event.getActionMasked() == MotionEvent.ACTION_MOVE)
+            else if (event.getActionMasked() == MotionEvent.ACTION_MOVE)
             {
-                if(mMode == MODE_DRAG)
+                if (mMode == MODE_DRAG)
                 {
-                    v.setX(v.getX()+event.getX()-mRelativeInitX);
-                    v.setY(v.getY()+event.getY()-mRelativeInitY);
+                    v.setX(v.getX() + event.getX() - mRelativeInitX);
+                    v.setY(v.getY() + event.getY() - mRelativeInitY);
                 }
 
-                if((mMode & MODE_RESIZE_TOP) == MODE_RESIZE_TOP)
+                if ((mMode & MODE_RESIZE_TOP) == MODE_RESIZE_TOP)
                 {
-                    dy = event.getY()-mRelativeInitY;
+                    dy = event.getY() - mRelativeInitY;
                     v.setY(v.getY() + dy);
-                    v.setLayoutParams(new RelativeLayout.LayoutParams(v.getLayoutParams().width, Math.round(v.getLayoutParams().height-dy)));
+                    v.setLayoutParams(new RelativeLayout.LayoutParams(v.getLayoutParams().width, Math.round(v.getLayoutParams().height - dy)));
                 }
 
-                if((mMode & MODE_RESIZE_LEFT) == MODE_RESIZE_LEFT)
+                if ((mMode & MODE_RESIZE_LEFT) == MODE_RESIZE_LEFT)
                 {
-                    dx = event.getX()-mRelativeInitX;
+                    dx = event.getX() - mRelativeInitX;
                     v.setX(v.getX() + dx);
                     v.setLayoutParams(new RelativeLayout.LayoutParams(Math.round(v.getLayoutParams().width - dx), v.getLayoutParams().height));
                 }
 
-                if((mMode & MODE_RESIZE_BOTTOM) == MODE_RESIZE_BOTTOM)
+                if ((mMode & MODE_RESIZE_BOTTOM) == MODE_RESIZE_BOTTOM)
                 {
-                    dy = event.getY()-mRelativeInitY;
-                    v.setLayoutParams(new RelativeLayout.LayoutParams(v.getLayoutParams().width, (int) (mInitHeight+dy)));
+                    dy = event.getY() - mRelativeInitY;
+                    v.setLayoutParams(new RelativeLayout.LayoutParams(v.getLayoutParams().width, (int) (mInitHeight + dy)));
                 }
 
-                if((mMode & MODE_RESIZE_RIGHT) == MODE_RESIZE_RIGHT)
+                if ((mMode & MODE_RESIZE_RIGHT) == MODE_RESIZE_RIGHT)
                 {
-                    dx = event.getX()-mRelativeInitX;
+                    dx = event.getX() - mRelativeInitX;
                     v.setLayoutParams(new RelativeLayout.LayoutParams((int) (mInitWidth + dx), v.getLayoutParams().height));
                 }
 
                 return true;
             }
-            else if(event.getActionMasked() == MotionEvent.ACTION_UP)
+            else if (event.getActionMasked() == MotionEvent.ACTION_UP)
             {
                 Rect oldPlacement = new Rect(mPlacement);
                 int left = Math.round(v.getX() / mMonitorActivity.mCellWidth);
@@ -181,7 +180,7 @@ public class Widget extends View
                 int right = left + Math.round(v.getLayoutParams().width / mMonitorActivity.mCellWidth);
                 int bottom = top + Math.round(v.getLayoutParams().height / mMonitorActivity.mCellHeight);
                 ((Widget) v).move(left, top, right, bottom);
-                if(!mMonitorActivity.checkPlacement((Widget) v))
+                if (!mMonitorActivity.checkPlacement((Widget) v))
                     ((Widget) v).move(oldPlacement);
             }
             return false;
