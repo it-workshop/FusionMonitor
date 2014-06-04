@@ -1,6 +1,7 @@
 package com.technoworks.fusionmonitor;
 
 import android.app.Activity;
+import android.content.res.TypedArray;
 import android.graphics.*;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -8,6 +9,7 @@ import android.graphics.drawable.shapes.PathShape;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 public class MonitorActivity extends Activity
 {
     public static final int APPROXIMATE_CELL_SIZE_DP = 50;
-    public static final float VERTICAL_CORRECTION = 0.925f; //A workaround! Requires fixing!
+    public static final float VERTICAL_CORRECTION = 1f; //A workaround! Requires fixing!
 
     public RelativeLayout rootLayout;
 
@@ -45,12 +47,19 @@ public class MonitorActivity extends Activity
         mScreenDensity = metrics.density;
         mDisplaySize = new Point();
         display.getSize(mDisplaySize);
+        Log.d("display size", mDisplaySize.toString());
+
+        final TypedArray styledAttributes = getTheme().obtainStyledAttributes(new int[] {android.R.attr.actionBarSize});
+        float actionBarHeight = styledAttributes.getDimension(0, 0);
+        styledAttributes.recycle();
+
         mColumns = Math.round(mDisplaySize.x / (APPROXIMATE_CELL_SIZE_DP * mScreenDensity));
-        mRows = Math.round(mDisplaySize.y / (APPROXIMATE_CELL_SIZE_DP * mScreenDensity));
-        mBoundaries = new Rect(0, 0, mColumns, mRows);
+        mRows = Math.round((mDisplaySize.y - actionBarHeight) / (APPROXIMATE_CELL_SIZE_DP * mScreenDensity));
         mCellWidth = (float) mDisplaySize.x / mColumns;
-        mCellHeight = (float) mDisplaySize.y / mRows;
+        mCellHeight = (mDisplaySize.y - actionBarHeight) / mRows;
+        mBoundaries = new Rect(0, 0, mColumns, mRows);
         mEditMode = false;
+        Log.d("canvas size", mCellWidth + " " + mCellHeight);
 
         ShapeDrawable[] backgroundElements = new ShapeDrawable[mColumns + mRows - 1];
 
@@ -61,22 +70,22 @@ public class MonitorActivity extends Activity
 
         for (int i = 1; i < mColumns; i++)
         {
-            ShapeDrawable line = new ShapeDrawable(new PathShape(generateLine(mCellWidth * i, 0, mCellWidth * i, mDisplaySize.y), mDisplaySize.x, mDisplaySize.y));
-            line.setBounds(0, 0, mDisplaySize.x, mDisplaySize.y);
+            ShapeDrawable line = new ShapeDrawable(new PathShape(generateLine(mCellWidth * i, 0, mCellWidth * i, mDisplaySize.y - actionBarHeight), mDisplaySize.x, mDisplaySize.y - actionBarHeight));
+            line.setBounds(0, 0, mDisplaySize.x, (int) (mDisplaySize.y - actionBarHeight));
             line.getPaint().setColor(Color.LTGRAY);
             line.getPaint().setStyle(Paint.Style.STROKE);
             backgroundElements[i] = line;
         }
         for (int i = 1; i < mRows; i++)
         {
-            ShapeDrawable line = new ShapeDrawable(new PathShape(generateLine(0, mCellHeight * i, mDisplaySize.x, mCellHeight * i), mDisplaySize.x, mDisplaySize.y));
-            line.setBounds(0, 0, mDisplaySize.x, mDisplaySize.y);
+            ShapeDrawable line = new ShapeDrawable(new PathShape(generateLine(0, mCellHeight * i, mDisplaySize.x, mCellHeight * i), mDisplaySize.x, mDisplaySize.y - actionBarHeight));
+            line.setBounds(0, 0, mDisplaySize.x, (int) (mDisplaySize.y - actionBarHeight));
             line.getPaint().setColor(Color.LTGRAY);
             line.getPaint().setStyle(Paint.Style.STROKE);
             backgroundElements[i + mColumns - 1] = line;
         }
 
-        mCellHeight *= VERTICAL_CORRECTION; //A workaround! Requires fixing!
+        //mCellHeight *= VERTICAL_CORRECTION; //A workaround! Requires fixing!
 
         LayerDrawable background = new LayerDrawable(backgroundElements);
 
