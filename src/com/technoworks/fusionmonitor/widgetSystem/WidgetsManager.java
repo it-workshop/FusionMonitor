@@ -5,7 +5,6 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +14,6 @@ import java.util.List;
  * Created by lgor on 14.06.14.
  */
 public final class WidgetsManager implements View.OnTouchListener {
-
-    private final static int DELTA = 64;
 
     private final List<iWidgetView> mWidgets = new ArrayList<iWidgetView>();
 
@@ -83,7 +80,7 @@ public final class WidgetsManager implements View.OnTouchListener {
                     float w = Math.abs(event.getX(0) - event.getX(1));
                     float h = Math.abs(event.getY(0) - event.getY(1));
                     currentPos.set(startPos);
-                    scale(currentPos, w/w0, h/h0);
+                    scale(currentPos, w / w0, h / h0);
                 }
                 else {
                     w0 = h0 = 0;
@@ -95,6 +92,22 @@ public final class WidgetsManager implements View.OnTouchListener {
             }
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
+                v.getPosition(temp);
+                Rect f = new Rect(temp);
+                scale(f, 0.8f, 0.8f);
+                if (getIntersectionWith(f, v) != null) {
+                    v.setPosition(startPos);
+                    return false;
+                }
+                f.set(temp);
+                scale(f, 1.25f, 1.25f);
+                if (getIntersectionWith(f, v) == null) {
+                    v.setPosition(temp);
+                    return false;
+                }
+                correctRect(f, v);
+                scale(f, intersectH ? 1f : 0.8f, intersectV ? 1f : 0.8f);
+                v.setPosition(f);
                 return false;
             default:
                 return true;
@@ -112,10 +125,43 @@ public final class WidgetsManager implements View.OnTouchListener {
         for (iWidgetView view : mWidgets) {
             if (view == skip) continue;
             view.getPosition(temp);
-            if (temp.right <= rect.left || rect.right <= temp.left) continue;
-            if (temp.top >= rect.bottom || temp.bottom <= rect.top) continue;
-            return rect;
+            if (Rect.intersects(temp, rect)) {
+                return temp;
+            }
         }
         return null;
+    }
+
+    private boolean intersectH, intersectV;
+
+    private void correctRect(Rect rect, iWidgetView skip) {
+        intersectH = intersectV = false;
+        Rect temp = new Rect();
+        for (iWidgetView view : mWidgets) {
+            if (view == skip) continue;
+            view.getPosition(temp);
+            if (!Rect.intersects(temp, rect)) {
+                continue;
+            }
+            temp.intersect(rect);
+            if (temp.width() > temp.height()) {
+                intersectV = true;
+                if (temp.top == rect.top) {
+                    rect.top = temp.bottom;
+                }
+                else {
+                    rect.bottom = temp.top;
+                }
+            }
+            else {
+                intersectH = true;
+                if (temp.left == rect.left) {
+                    rect.left = temp.right;
+                }
+                else {
+                    rect.right = temp.left;
+                }
+            }
+        }
     }
 }
