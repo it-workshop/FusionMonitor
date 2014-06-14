@@ -15,9 +15,9 @@ import java.util.List;
  */
 public final class WidgetsManager implements View.OnTouchListener {
 
-    private final List<iWidgetView> mWidgets = new ArrayList<iWidgetView>();
-
     public boolean mEditMode = false;
+
+    private final List<iWidgetView> mWidgets = new ArrayList<iWidgetView>();
 
     private RelativeLayout mRootLayout;
     private Context mContext;
@@ -118,10 +118,16 @@ public final class WidgetsManager implements View.OnTouchListener {
         }
     }
 
-    private static void scale(Rect r, float sx, float sy) {
-        int dx = Math.round(sx * r.width() / 2);
-        int dy = Math.round(sy * r.height() / 2);
-        r.set(r.centerX() - dx, r.centerY() - dy, r.centerX() + dx, r.centerY() + dy);
+    private Rect[] mBounds;
+
+    private void initBounds() {
+        if (mBounds != null) return;
+        int l = 10000;
+        mBounds = new Rect[4];
+        mBounds[0] = new Rect(-l, -l, l, 0);
+        mBounds[1] = new Rect(-l, -l, 0, l);
+        mBounds[2] = new Rect(mRootLayout.getRight(), -l, l, l);
+        mBounds[3] = new Rect(-l, mRootLayout.getBottom(), l, l);
     }
 
     private Rect getIntersectionWith(Rect rect, iWidgetView skip) {
@@ -133,6 +139,12 @@ public final class WidgetsManager implements View.OnTouchListener {
                 return temp;
             }
         }
+        initBounds();
+        for (Rect temp2 : mBounds) {
+            if (Rect.intersects(temp2, rect)) {
+                return temp2;
+            }
+        }
         return null;
     }
 
@@ -141,26 +153,41 @@ public final class WidgetsManager implements View.OnTouchListener {
         for (iWidgetView view : mWidgets) {
             if (view == skip) continue;
             view.getPosition(temp);
-            if (!Rect.intersects(temp, rect)) {
-                continue;
-            }
-            temp.intersect(rect);
-            if (temp.width() > temp.height()) {
-                if (temp.top == rect.top) {
-                    rect.top = temp.bottom;
-                }
-                else {
-                    rect.bottom = temp.top;
-                }
+            correctRect(rect, temp);
+        }
+        initBounds();
+        for (Rect r : mBounds) {
+            temp.set(r);
+            correctRect(rect, temp);
+        }
+    }
+
+    private static void correctRect(Rect corrected, Rect another) {
+        if (!corrected.intersects(another, corrected)) {
+            return;
+        }
+        another.intersect(corrected);
+        if (another.width() > another.height()) {
+            if (another.top == corrected.top) {
+                corrected.top = another.bottom;
             }
             else {
-                if (temp.left == rect.left) {
-                    rect.left = temp.right;
-                }
-                else {
-                    rect.right = temp.left;
-                }
+                corrected.bottom = another.top;
             }
         }
+        else {
+            if (another.left == corrected.left) {
+                corrected.left = another.right;
+            }
+            else {
+                corrected.right = another.left;
+            }
+        }
+    }
+
+    private static void scale(Rect r, float sx, float sy) {
+        int dx = Math.round(sx * r.width() / 2);
+        int dy = Math.round(sy * r.height() / 2);
+        r.set(r.centerX() - dx, r.centerY() - dy, r.centerX() + dx, r.centerY() + dy);
     }
 }
