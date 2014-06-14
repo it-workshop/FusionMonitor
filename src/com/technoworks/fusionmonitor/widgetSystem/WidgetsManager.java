@@ -93,21 +93,25 @@ public final class WidgetsManager implements View.OnTouchListener {
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 v.getPosition(temp);
-                Rect f = new Rect(temp);
-                scale(f, 0.8f, 0.8f);
-                if (getIntersectionWith(f, v) != null) {
+                Rect frame = new Rect(temp);
+                scale(frame, 0.8f, 0.8f);
+                if (getIntersectionWith(frame, v) != null) {
                     v.setPosition(startPos);
                     return false;
                 }
-                f.set(temp);
-                scale(f, 1.25f, 1.25f);
-                if (getIntersectionWith(f, v) == null) {
+                frame.set(temp);
+                scale(frame, 1.25f, 1.25f);
+                if (getIntersectionWith(frame, v) == null) {
                     v.setPosition(temp);
                     return false;
                 }
-                correctRect(f, v);
-                scale(f, intersectH ? 1f : 0.8f, intersectV ? 1f : 0.8f);
-                v.setPosition(f);
+                Rect frameMax = new Rect(frame);
+                correctRect(frame, v);
+                if (frame.top == frameMax.top) frame.top = temp.top;
+                if (frame.left == frameMax.left) frame.left = temp.left;
+                if (frame.right == frameMax.right) frame.right = temp.right;
+                if (frame.bottom == frameMax.bottom) frame.bottom = temp.bottom;
+                v.setPosition(frame);
                 return false;
             default:
                 return true;
@@ -132,10 +136,7 @@ public final class WidgetsManager implements View.OnTouchListener {
         return null;
     }
 
-    private boolean intersectH, intersectV;
-
     private void correctRect(Rect rect, iWidgetView skip) {
-        intersectH = intersectV = false;
         Rect temp = new Rect();
         for (iWidgetView view : mWidgets) {
             if (view == skip) continue;
@@ -145,7 +146,6 @@ public final class WidgetsManager implements View.OnTouchListener {
             }
             temp.intersect(rect);
             if (temp.width() > temp.height()) {
-                intersectV = true;
                 if (temp.top == rect.top) {
                     rect.top = temp.bottom;
                 }
@@ -154,7 +154,6 @@ public final class WidgetsManager implements View.OnTouchListener {
                 }
             }
             else {
-                intersectH = true;
                 if (temp.left == rect.left) {
                     rect.left = temp.right;
                 }
