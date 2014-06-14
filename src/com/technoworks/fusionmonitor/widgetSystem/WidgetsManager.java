@@ -36,6 +36,17 @@ public final class WidgetsManager implements View.OnTouchListener {
      */
     public boolean addWidget(iWidget widget) {
         temp.set(0, 0, 256, 256);
+        int counter = 0;
+        while (getIntersectionWith(temp, null) != null) {
+            int dx = (int) (Math.random() * (mRootLayout.getWidth() - 256));
+            int dy = (int) (Math.random() * (mRootLayout.getHeight() - 256));
+            temp.set(dx, dy, temp.width()+dx, temp.height()+dy);
+            counter++;
+            if (counter > 100) {
+                counter = 0;
+                scale(temp, 0.9f, 0.9f);
+            }
+        }
         WidgetView wv = new WidgetView(mContext, widget, temp);
         mWidgets.add(wv);
         mRootLayout.addView(wv);
@@ -131,22 +142,25 @@ public final class WidgetsManager implements View.OnTouchListener {
     }
 
     private Rect getIntersectionWith(Rect rect, iWidgetView skip) {
-        Rect temp = new Rect();
-        for (iWidgetView view : mWidgets) {
-            if (view == skip) continue;
-            view.getPosition(temp);
-            if (Rect.intersects(temp, rect)) {
-                return temp;
+        {
+            Rect tmp = new Rect();
+            for (iWidgetView view : mWidgets) {
+                if (view == skip) continue;
+                view.getPosition(tmp);
+                if (Rect.intersects(tmp, rect)) {
+                    return tmp;
+                }
             }
         }
         initBounds();
-        for (Rect temp2 : mBounds) {
-            if (Rect.intersects(temp2, rect)) {
-                return temp2;
+        for (Rect tmp : mBounds) {
+            if (Rect.intersects(tmp, rect)) {
+                return tmp;
             }
         }
         return null;
     }
+
 
     private void correctRect(Rect rect, iWidgetView skip) {
         Rect temp = new Rect();
