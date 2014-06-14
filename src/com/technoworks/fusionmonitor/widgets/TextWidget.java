@@ -18,6 +18,7 @@ import java.util.List;
 public class TextWidget implements iWidget {
     private final static int INDENT = 8;
 
+    private final int backgroundColor;
     private final Paint mPaint;
     private final float mMaxTextSize;
     private final Rect mTextBounds;
@@ -30,11 +31,12 @@ public class TextWidget implements iWidget {
         mMaxTextSize = 4 * mPaint.getTextSize();
         mPaint.setTextSize(mMaxTextSize);
         mTextBounds = new Rect();
+        backgroundColor = 0xFF000000 + (int)(Math.random()*100)+ 0x10000*(int)(Math.random()*100);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        canvas.drawColor(0xFF000000);
+        canvas.drawColor(backgroundColor);
         updateText(canvas.getWidth(), canvas.getHeight());
 
         float max = 0;
