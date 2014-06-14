@@ -24,7 +24,6 @@ public class MonitorActivity extends Activity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
 
-
         RelativeLayout rootLayout = new RelativeLayout(this);
         ShapeDrawable background = new ShapeDrawable(new RectShape());
         background.getPaint().setColor(0xFFAAAAAA);
@@ -34,7 +33,7 @@ public class MonitorActivity extends Activity {
         if (mWidgets == null) {
             mWidgets = new WidgetsManager();
         }
-        mWidgets.reload(this, rootLayout);
+        mWidgets.init(this, rootLayout);
     }
 
     @Override

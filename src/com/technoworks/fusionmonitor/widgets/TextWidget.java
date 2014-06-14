@@ -3,7 +3,8 @@ package com.technoworks.fusionmonitor.widgets;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import com.technoworks.fusionmonitor.widgetSystem.Touch;
+import android.view.MotionEvent;
+import android.view.View;
 import com.technoworks.fusionmonitor.widgetSystem.iWidget;
 
 import java.util.ArrayList;
@@ -52,15 +53,15 @@ public class TextWidget implements iWidget {
         }
     }
 
-    @Override
-    public boolean onTouch(final Touch touch) {
-        return false;
-    }
-
     protected void updateText(int w, int h) {
         mText.clear();
         mText.add("draw calls : " + mDrawCalls++);
         mText.add("drawing size = (" + w + "," + h + ")");
         mText.add("total memory = " + (Runtime.getRuntime().totalMemory() >> 10) + " kb");
+    }
+
+    @Override
+    public boolean onTouch(final View v, final MotionEvent event) {
+        return false;
     }
 }

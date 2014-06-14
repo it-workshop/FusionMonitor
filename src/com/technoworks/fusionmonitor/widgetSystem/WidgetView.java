@@ -44,15 +44,8 @@ final class WidgetView extends View implements iWidgetView, View.OnTouchListener
         widget.onDraw(canvas);
     }
 
-    private Touch t;
-
     @Override
     public boolean onTouch(final View v, final MotionEvent event) {
-        t = Touch.getTouches(event, t);
-        if (widget.onTouch(t)) {
-            return true;
-        }
-        t = null;
-        return false;
+        return widget.onTouch(v, event);
     }
 }
