@@ -1,0 +1,46 @@
+package messaging;
+
+option java_package = "com.technoworks.fusionmonitor";
+option optimize_for = LITE_RUNTIME;
+ 
+// A set of three double values (x, y, z).
+message Vector {
+  required double x = 1;
+  required double y = 2;
+  required double z = 3;
+}
+ 
+// A set of three double values (p, i, d).
+message PIDValues {
+  required double p = 1;
+  required double i = 2;
+  required double d = 3;
+}
+ 
+// A set of pid data (factors and limit).
+message PIDSettings {
+  required PIDValues factors = 1;
+  required PIDValues min_max = 2; 
+}
+ 
+// Message sended from the PC to the copter.
+message Settings {
+  required Vector angle_offset = 1;
+  required PIDSettings pid_x = 2;
+  required PIDSettings pid_y = 3;
+  required PIDSettings pid_z = 4;
+}
+ 
+// Message sended from the Copter to the PC.
+message Telemetry {
+  required Vector torques = 1;
+  required Vector angular_velocity = 2;
+  required PIDValues pid_x = 3;
+  required PIDValues pid_y = 4;
+  required PIDValues pid_z = 5;
+  required double heading = 6;
+  required double control_heading = 7;
+  required double force = 8;
+  required double correction_x = 9;
+  required double correction_y = 10;
+}
