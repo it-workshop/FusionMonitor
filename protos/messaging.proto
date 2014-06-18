@@ -1,5 +1,3 @@
-package messaging;
-
 option java_package = "com.technoworks.fusionmonitor";
 option optimize_for = LITE_RUNTIME;
  
