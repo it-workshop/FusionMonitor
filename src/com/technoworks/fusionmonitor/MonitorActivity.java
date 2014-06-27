@@ -21,7 +21,6 @@ import java.util.ArrayList;
 public class MonitorActivity extends Activity
 {
     public static final int APPROXIMATE_CELL_SIZE_DP = 50;
-    public static final float VERTICAL_CORRECTION = 1f; //A workaround! Requires fixing!
 
     public RelativeLayout rootLayout;
 
@@ -65,7 +64,6 @@ public class MonitorActivity extends Activity
 
         ShapeDrawable fill = new ShapeDrawable(new RectShape());
         fill.getPaint().setColor(Color.WHITE);
-        //fill.setBounds(0, 0, mDisplaySize.x, mDisplaySize.y);
         backgroundElements[0] = fill;
 
         for (int i = 1; i < mColumns; i++)
@@ -84,8 +82,6 @@ public class MonitorActivity extends Activity
             line.getPaint().setStyle(Paint.Style.STROKE);
             backgroundElements[i + mColumns - 1] = line;
         }
-
-        //mCellHeight *= VERTICAL_CORRECTION; //A workaround! Requires fixing!
 
         LayerDrawable background = new LayerDrawable(backgroundElements);
 
@@ -140,8 +136,6 @@ public class MonitorActivity extends Activity
         }
         widget.setPlacement();
         widget.setEditMode(mEditMode);
-        //widget.setMinimumWidth((int) (mCellWidth*5));
-        //widget.setMinimumHeight((int) (mCellHeight*10));
         rootLayout.addView(widget);
         mWidgets.add(widget);
     }

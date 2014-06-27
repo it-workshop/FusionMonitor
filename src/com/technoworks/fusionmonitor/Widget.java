@@ -19,12 +19,12 @@ import android.widget.RelativeLayout;
 public class Widget extends View
 {
     public static final int PADDING_DP = 5;
-    protected static final Rect DEFAULT_PLACEMENT = new Rect(0, 0, 3, 3);
+    protected static final int[] DEFAULT_SIZE = {3, 3};
 
     protected OnTouchListener mInnerListener = null;
     protected EditModeTouchListener mEditModeTouchListener;
 
-    private int mInset;
+    private int mPadding;
     private boolean mIsInEditMode;
     private MonitorActivity mMonitorActivity;
 
@@ -34,11 +34,11 @@ public class Widget extends View
     {
         super(context);
 
-        mPlacement = new Rect(DEFAULT_PLACEMENT);
+        mPlacement = new Rect(0, 0, DEFAULT_SIZE[0], DEFAULT_SIZE[1]);
 
         mEditModeTouchListener = new EditModeTouchListener();
         mMonitorActivity = (MonitorActivity) context;
-        mInset = (int) (mMonitorActivity.mScreenDensity * PADDING_DP);
+        mPadding = (int) (mMonitorActivity.mScreenDensity * PADDING_DP);
         mIsInEditMode = false;
 
         Drawable[] background = new Drawable[2];
@@ -46,14 +46,16 @@ public class Widget extends View
         ShapeDrawable fill = new ShapeDrawable(new RectShape());
         fill.getPaint().setColor(Color.WHITE);
         fill.getPaint().setStyle(Paint.Style.FILL);
-        background[0] = fill;//new InsetDrawable(fill, mInset);
+        background[0] = fill;
 
         ShapeDrawable frame = new ShapeDrawable(new RectShape());
         frame.getPaint().setColor(Color.CYAN);
         frame.getPaint().setStyle(Paint.Style.STROKE);
-        background[1] = frame;//new InsetDrawable(frame, mInset);
+        background[1] = frame;
 
-        setBackground(new InsetDrawable(new LayerDrawable(background), mInset));
+        setBackground(new InsetDrawable(new LayerDrawable(background), mPadding));
+
+        setPadding(mPadding, mPadding, mPadding, mPadding);
     }
 
     public void attachListener(OnTouchListener listener)
@@ -120,13 +122,13 @@ public class Widget extends View
             if (event.getActionMasked() == MotionEvent.ACTION_DOWN)
             {
                 mMode = 0;
-                if (event.getY() < mInset * RESIZE_BORDERS_INSET_MULTIPLIER)
+                if (event.getY() < mPadding * RESIZE_BORDERS_INSET_MULTIPLIER)
                     mMode += MODE_RESIZE_TOP;
-                if (event.getX() < mInset * RESIZE_BORDERS_INSET_MULTIPLIER)
+                if (event.getX() < mPadding * RESIZE_BORDERS_INSET_MULTIPLIER)
                     mMode += MODE_RESIZE_LEFT;
-                if (event.getY() > v.getHeight() - mInset * RESIZE_BORDERS_INSET_MULTIPLIER)
+                if (event.getY() > v.getHeight() - mPadding * RESIZE_BORDERS_INSET_MULTIPLIER)
                     mMode += MODE_RESIZE_BOTTOM;
-                if (event.getX() > v.getWidth() - mInset * RESIZE_BORDERS_INSET_MULTIPLIER)
+                if (event.getX() > v.getWidth() - mPadding * RESIZE_BORDERS_INSET_MULTIPLIER)
                     mMode += MODE_RESIZE_RIGHT;
 
                 mRelativeInitX = event.getX();
