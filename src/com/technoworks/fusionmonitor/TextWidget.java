@@ -27,7 +27,7 @@ public class TextWidget extends Widget
     {
         super(context);
         mPaint = new Paint();
-        mPaint.setColor(0xFF00FF00);
+        mPaint.setColor(0xFF000000);
         mMaxTextSize = 2* mPaint.getTextSize() * ((MonitorActivity) context).mScreenDensity;
         mPaint.setTextSize(mMaxTextSize);
         mTextBounds = new Rect();
@@ -36,9 +36,6 @@ public class TextWidget extends Widget
     @Override
     protected void onDraw(Canvas canvas)
     {
-        //super.onDraw(canvas);
-        canvas.drawColor(0xFF000000);
-
         updateText(canvas.getWidth(), canvas.getHeight());
 
         float max = 0;
@@ -46,7 +43,7 @@ public class TextWidget extends Widget
         for (String s : mText)
         {
             mPaint.getTextBounds(s, 0, s.length(), mTextBounds);
-            max = Math.max((float) (mTextBounds.width() + 2 * INDENT) * w, max);
+            max = Math.max((float) (mTextBounds.width() + 2 * INDENT + getPaddingLeft() + getPaddingRight()) * w, max);
         }
 
         float textSize = Math.min((mPaint.getTextSize() -1) / max, mMaxTextSize);
@@ -54,7 +51,7 @@ public class TextWidget extends Widget
 
         for (int i = 0; i < mText.size(); i++)
         {
-            canvas.drawText(mText.get(i), INDENT, mTextBounds.height() * (i + 1), mPaint);
+            canvas.drawText(mText.get(i), INDENT + getPaddingLeft(), mTextBounds.height() * (i + 1) + getPaddingTop(), mPaint);
         }
     }
 
