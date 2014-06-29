@@ -156,6 +156,14 @@ public class MonitorActivity extends Activity
     {
         if (!mBoundaries.contains(checkingWidget.mPlacement))
             return false;
+        if (checkingWidget.mPlacement.height() == 0 && checkingWidget.mPlacement.width() == 0)
+        {
+            rootLayout.removeView(checkingWidget);
+            mWidgets.remove(checkingWidget);
+            return true;
+        }
+        if (checkingWidget.mPlacement.height() == 0 || checkingWidget.mPlacement.width() == 0)
+            return false;
         for (Widget widget : mWidgets)
         {
             if (widget.equals(checkingWidget))
