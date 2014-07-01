@@ -9,4 +9,8 @@
           android:icon="@drawable/ic_action_new"
           android:title="Add empty widget"
           android:showAsAction="ifRoom"/>
+    <item android:id="@+id/toggle_simulation"
+          android:icon="@drawable/ic_action_play"
+          android:title="Toggle simulation"
+          android:showAsAction="ifRoom"/>
 </menu>

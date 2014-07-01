@@ -32,6 +32,9 @@ public class MonitorActivity extends Activity
     private ArrayList<Widget> mWidgets;
     public float mScreenDensity;
     private boolean mEditMode;
+    private boolean mSimulationOn;
+    public LoggerList mLog;
+    private Simulation mSimulation;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -39,6 +42,8 @@ public class MonitorActivity extends Activity
         super.onCreate(savedInstanceState);
 
         mWidgets = new ArrayList<Widget>();
+        mLog = new LoggerList();
+
         DisplayMetrics metrics = new DisplayMetrics();
         Display display = getWindow().getWindowManager().getDefaultDisplay();
         display.getMetrics(metrics);
@@ -51,6 +56,7 @@ public class MonitorActivity extends Activity
         mCellWidth = (float) mDisplaySize.x / mColumns;
         mCellHeight = (float) mDisplaySize.y / mRows;
         mEditMode = false;
+        mSimulationOn = false;
 
         ShapeDrawable[] backgroundElements = new ShapeDrawable[mColumns + mRows - 1];
 
@@ -106,6 +112,19 @@ public class MonitorActivity extends Activity
                 item.setTitle(mEditMode ? R.string.edit_mode_on : R.string.edit_mode_off);
                 for (Widget widget : mWidgets)
                     widget.setEditMode(mEditMode);
+                return true;
+            case R.id.toggle_simulation:
+                mSimulationOn = !mSimulationOn;
+                if(mSimulationOn)
+                {
+                    item.setIcon(R.drawable.ic_action_pause);
+                    mSimulation = new Simulation(mLog);
+                }
+                else
+                {
+                    item.setIcon(R.drawable.ic_action_play);
+                    mSimulation.finish();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
