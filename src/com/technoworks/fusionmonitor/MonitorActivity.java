@@ -9,7 +9,6 @@ import android.graphics.drawable.shapes.PathShape;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +32,9 @@ public class MonitorActivity extends Activity
     private ArrayList<Widget> mWidgets;
     public float mScreenDensity;
     private boolean mEditMode;
+    private boolean mSimulationOn;
+    public LoggerList mLog;
+    private Simulation mSimulation;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -40,13 +42,14 @@ public class MonitorActivity extends Activity
         super.onCreate(savedInstanceState);
 
         mWidgets = new ArrayList<Widget>();
+        mLog = new LoggerList();
+
         DisplayMetrics metrics = new DisplayMetrics();
         Display display = getWindow().getWindowManager().getDefaultDisplay();
         display.getMetrics(metrics);
         mScreenDensity = metrics.density;
         mDisplaySize = new Point();
         display.getSize(mDisplaySize);
-        Log.d("display size", mDisplaySize.toString());
 
         final TypedArray styledAttributes = getTheme().obtainStyledAttributes(new int[] {android.R.attr.actionBarSize});
         float actionBarHeight = styledAttributes.getDimension(0, 0);
@@ -58,7 +61,7 @@ public class MonitorActivity extends Activity
         mCellHeight = (mDisplaySize.y - actionBarHeight) / mRows;
         mBoundaries = new Rect(0, 0, mColumns, mRows);
         mEditMode = false;
-        Log.d("canvas size", mCellWidth + " " + mCellHeight);
+        mSimulationOn = false;
 
         ShapeDrawable[] backgroundElements = new ShapeDrawable[mColumns + mRows - 1];
 
@@ -111,6 +114,19 @@ public class MonitorActivity extends Activity
                 item.setTitle(mEditMode ? R.string.edit_mode_on : R.string.edit_mode_off);
                 for (Widget widget : mWidgets)
                     widget.setEditMode(mEditMode);
+                return true;
+            case R.id.toggle_simulation:
+                mSimulationOn = !mSimulationOn;
+                if(mSimulationOn)
+                {
+                    item.setIcon(R.drawable.ic_action_pause);
+                    mSimulation = new Simulation(mLog);
+                }
+                else
+                {
+                    item.setIcon(R.drawable.ic_action_play);
+                    mSimulation.finish();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
