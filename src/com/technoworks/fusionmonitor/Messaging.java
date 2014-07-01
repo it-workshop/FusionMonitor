@@ -42,7 +42,7 @@ public final class Messaging {
     double getZ();
   }
   /**
-   * Protobuf type {@code messaging.Vector}
+   * Protobuf type {@code Vector}
    *
    * <pre>
    * A set of three double values (x, y, z).
@@ -308,7 +308,7 @@ public final class Messaging {
     public Builder toBuilder() { return newBuilder(this); }
 
     /**
-     * Protobuf type {@code messaging.Vector}
+     * Protobuf type {@code Vector}
      *
      * <pre>
      * A set of three double values (x, y, z).
@@ -524,7 +524,7 @@ public final class Messaging {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:messaging.Vector)
+      // @@protoc_insertion_point(builder_scope:Vector)
     }
 
     static {
@@ -532,7 +532,7 @@ public final class Messaging {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:messaging.Vector)
+    // @@protoc_insertion_point(class_scope:Vector)
   }
 
   public interface PIDValuesOrBuilder
@@ -569,7 +569,7 @@ public final class Messaging {
     double getD();
   }
   /**
-   * Protobuf type {@code messaging.PIDValues}
+   * Protobuf type {@code PIDValues}
    *
    * <pre>
    * A set of three double values (p, i, d).
@@ -835,7 +835,7 @@ public final class Messaging {
     public Builder toBuilder() { return newBuilder(this); }
 
     /**
-     * Protobuf type {@code messaging.PIDValues}
+     * Protobuf type {@code PIDValues}
      *
      * <pre>
      * A set of three double values (p, i, d).
@@ -1051,7 +1051,7 @@ public final class Messaging {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:messaging.PIDValues)
+      // @@protoc_insertion_point(builder_scope:PIDValues)
     }
 
     static {
@@ -1059,34 +1059,34 @@ public final class Messaging {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:messaging.PIDValues)
+    // @@protoc_insertion_point(class_scope:PIDValues)
   }
 
   public interface PIDSettingsOrBuilder
       extends com.google.protobuf.MessageLiteOrBuilder {
 
-    // required .messaging.PIDValues factors = 1;
+    // required .PIDValues factors = 1;
     /**
-     * <code>required .messaging.PIDValues factors = 1;</code>
+     * <code>required .PIDValues factors = 1;</code>
      */
     boolean hasFactors();
     /**
-     * <code>required .messaging.PIDValues factors = 1;</code>
+     * <code>required .PIDValues factors = 1;</code>
      */
     com.technoworks.fusionmonitor.Messaging.PIDValues getFactors();
 
-    // required .messaging.PIDValues min_max = 2;
+    // required .PIDValues min_max = 2;
     /**
-     * <code>required .messaging.PIDValues min_max = 2;</code>
+     * <code>required .PIDValues min_max = 2;</code>
      */
     boolean hasMinMax();
     /**
-     * <code>required .messaging.PIDValues min_max = 2;</code>
+     * <code>required .PIDValues min_max = 2;</code>
      */
     com.technoworks.fusionmonitor.Messaging.PIDValues getMinMax();
   }
   /**
-   * Protobuf type {@code messaging.PIDSettings}
+   * Protobuf type {@code PIDSettings}
    *
    * <pre>
    * A set of pid data (factors and limit).
@@ -1185,33 +1185,33 @@ public final class Messaging {
     }
 
     private int bitField0_;
-    // required .messaging.PIDValues factors = 1;
+    // required .PIDValues factors = 1;
     public static final int FACTORS_FIELD_NUMBER = 1;
     private com.technoworks.fusionmonitor.Messaging.PIDValues factors_;
     /**
-     * <code>required .messaging.PIDValues factors = 1;</code>
+     * <code>required .PIDValues factors = 1;</code>
      */
     public boolean hasFactors() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required .messaging.PIDValues factors = 1;</code>
+     * <code>required .PIDValues factors = 1;</code>
      */
     public com.technoworks.fusionmonitor.Messaging.PIDValues getFactors() {
       return factors_;
     }
 
-    // required .messaging.PIDValues min_max = 2;
+    // required .PIDValues min_max = 2;
     public static final int MIN_MAX_FIELD_NUMBER = 2;
     private com.technoworks.fusionmonitor.Messaging.PIDValues minMax_;
     /**
-     * <code>required .messaging.PIDValues min_max = 2;</code>
+     * <code>required .PIDValues min_max = 2;</code>
      */
     public boolean hasMinMax() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required .messaging.PIDValues min_max = 2;</code>
+     * <code>required .PIDValues min_max = 2;</code>
      */
     public com.technoworks.fusionmonitor.Messaging.PIDValues getMinMax() {
       return minMax_;
@@ -1343,7 +1343,7 @@ public final class Messaging {
     public Builder toBuilder() { return newBuilder(this); }
 
     /**
-     * Protobuf type {@code messaging.PIDSettings}
+     * Protobuf type {@code PIDSettings}
      *
      * <pre>
      * A set of pid data (factors and limit).
@@ -1455,22 +1455,22 @@ public final class Messaging {
       }
       private int bitField0_;
 
-      // required .messaging.PIDValues factors = 1;
+      // required .PIDValues factors = 1;
       private com.technoworks.fusionmonitor.Messaging.PIDValues factors_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
       /**
-       * <code>required .messaging.PIDValues factors = 1;</code>
+       * <code>required .PIDValues factors = 1;</code>
        */
       public boolean hasFactors() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required .messaging.PIDValues factors = 1;</code>
+       * <code>required .PIDValues factors = 1;</code>
        */
       public com.technoworks.fusionmonitor.Messaging.PIDValues getFactors() {
         return factors_;
       }
       /**
-       * <code>required .messaging.PIDValues factors = 1;</code>
+       * <code>required .PIDValues factors = 1;</code>
        */
       public Builder setFactors(com.technoworks.fusionmonitor.Messaging.PIDValues value) {
         if (value == null) {
@@ -1482,7 +1482,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues factors = 1;</code>
+       * <code>required .PIDValues factors = 1;</code>
        */
       public Builder setFactors(
           com.technoworks.fusionmonitor.Messaging.PIDValues.Builder builderForValue) {
@@ -1492,7 +1492,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues factors = 1;</code>
+       * <code>required .PIDValues factors = 1;</code>
        */
       public Builder mergeFactors(com.technoworks.fusionmonitor.Messaging.PIDValues value) {
         if (((bitField0_ & 0x00000001) == 0x00000001) &&
@@ -1507,7 +1507,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues factors = 1;</code>
+       * <code>required .PIDValues factors = 1;</code>
        */
       public Builder clearFactors() {
         factors_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
@@ -1516,22 +1516,22 @@ public final class Messaging {
         return this;
       }
 
-      // required .messaging.PIDValues min_max = 2;
+      // required .PIDValues min_max = 2;
       private com.technoworks.fusionmonitor.Messaging.PIDValues minMax_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
       /**
-       * <code>required .messaging.PIDValues min_max = 2;</code>
+       * <code>required .PIDValues min_max = 2;</code>
        */
       public boolean hasMinMax() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required .messaging.PIDValues min_max = 2;</code>
+       * <code>required .PIDValues min_max = 2;</code>
        */
       public com.technoworks.fusionmonitor.Messaging.PIDValues getMinMax() {
         return minMax_;
       }
       /**
-       * <code>required .messaging.PIDValues min_max = 2;</code>
+       * <code>required .PIDValues min_max = 2;</code>
        */
       public Builder setMinMax(com.technoworks.fusionmonitor.Messaging.PIDValues value) {
         if (value == null) {
@@ -1543,7 +1543,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues min_max = 2;</code>
+       * <code>required .PIDValues min_max = 2;</code>
        */
       public Builder setMinMax(
           com.technoworks.fusionmonitor.Messaging.PIDValues.Builder builderForValue) {
@@ -1553,7 +1553,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues min_max = 2;</code>
+       * <code>required .PIDValues min_max = 2;</code>
        */
       public Builder mergeMinMax(com.technoworks.fusionmonitor.Messaging.PIDValues value) {
         if (((bitField0_ & 0x00000002) == 0x00000002) &&
@@ -1568,7 +1568,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues min_max = 2;</code>
+       * <code>required .PIDValues min_max = 2;</code>
        */
       public Builder clearMinMax() {
         minMax_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
@@ -1577,7 +1577,7 @@ public final class Messaging {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:messaging.PIDSettings)
+      // @@protoc_insertion_point(builder_scope:PIDSettings)
     }
 
     static {
@@ -1585,54 +1585,54 @@ public final class Messaging {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:messaging.PIDSettings)
+    // @@protoc_insertion_point(class_scope:PIDSettings)
   }
 
   public interface SettingsOrBuilder
       extends com.google.protobuf.MessageLiteOrBuilder {
 
-    // required .messaging.Vector angle_offset = 1;
+    // required .Vector angle_offset = 1;
     /**
-     * <code>required .messaging.Vector angle_offset = 1;</code>
+     * <code>required .Vector angle_offset = 1;</code>
      */
     boolean hasAngleOffset();
     /**
-     * <code>required .messaging.Vector angle_offset = 1;</code>
+     * <code>required .Vector angle_offset = 1;</code>
      */
     com.technoworks.fusionmonitor.Messaging.Vector getAngleOffset();
 
-    // required .messaging.PIDSettings pid_x = 2;
+    // required .PIDSettings pid_x = 2;
     /**
-     * <code>required .messaging.PIDSettings pid_x = 2;</code>
+     * <code>required .PIDSettings pid_x = 2;</code>
      */
     boolean hasPidX();
     /**
-     * <code>required .messaging.PIDSettings pid_x = 2;</code>
+     * <code>required .PIDSettings pid_x = 2;</code>
      */
     com.technoworks.fusionmonitor.Messaging.PIDSettings getPidX();
 
-    // required .messaging.PIDSettings pid_y = 3;
+    // required .PIDSettings pid_y = 3;
     /**
-     * <code>required .messaging.PIDSettings pid_y = 3;</code>
+     * <code>required .PIDSettings pid_y = 3;</code>
      */
     boolean hasPidY();
     /**
-     * <code>required .messaging.PIDSettings pid_y = 3;</code>
+     * <code>required .PIDSettings pid_y = 3;</code>
      */
     com.technoworks.fusionmonitor.Messaging.PIDSettings getPidY();
 
-    // required .messaging.PIDSettings pid_z = 4;
+    // required .PIDSettings pid_z = 4;
     /**
-     * <code>required .messaging.PIDSettings pid_z = 4;</code>
+     * <code>required .PIDSettings pid_z = 4;</code>
      */
     boolean hasPidZ();
     /**
-     * <code>required .messaging.PIDSettings pid_z = 4;</code>
+     * <code>required .PIDSettings pid_z = 4;</code>
      */
     com.technoworks.fusionmonitor.Messaging.PIDSettings getPidZ();
   }
   /**
-   * Protobuf type {@code messaging.Settings}
+   * Protobuf type {@code Settings}
    *
    * <pre>
    * Message sended from the PC to the copter.
@@ -1757,65 +1757,65 @@ public final class Messaging {
     }
 
     private int bitField0_;
-    // required .messaging.Vector angle_offset = 1;
+    // required .Vector angle_offset = 1;
     public static final int ANGLE_OFFSET_FIELD_NUMBER = 1;
     private com.technoworks.fusionmonitor.Messaging.Vector angleOffset_;
     /**
-     * <code>required .messaging.Vector angle_offset = 1;</code>
+     * <code>required .Vector angle_offset = 1;</code>
      */
     public boolean hasAngleOffset() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required .messaging.Vector angle_offset = 1;</code>
+     * <code>required .Vector angle_offset = 1;</code>
      */
     public com.technoworks.fusionmonitor.Messaging.Vector getAngleOffset() {
       return angleOffset_;
     }
 
-    // required .messaging.PIDSettings pid_x = 2;
+    // required .PIDSettings pid_x = 2;
     public static final int PID_X_FIELD_NUMBER = 2;
     private com.technoworks.fusionmonitor.Messaging.PIDSettings pidX_;
     /**
-     * <code>required .messaging.PIDSettings pid_x = 2;</code>
+     * <code>required .PIDSettings pid_x = 2;</code>
      */
     public boolean hasPidX() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required .messaging.PIDSettings pid_x = 2;</code>
+     * <code>required .PIDSettings pid_x = 2;</code>
      */
     public com.technoworks.fusionmonitor.Messaging.PIDSettings getPidX() {
       return pidX_;
     }
 
-    // required .messaging.PIDSettings pid_y = 3;
+    // required .PIDSettings pid_y = 3;
     public static final int PID_Y_FIELD_NUMBER = 3;
     private com.technoworks.fusionmonitor.Messaging.PIDSettings pidY_;
     /**
-     * <code>required .messaging.PIDSettings pid_y = 3;</code>
+     * <code>required .PIDSettings pid_y = 3;</code>
      */
     public boolean hasPidY() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required .messaging.PIDSettings pid_y = 3;</code>
+     * <code>required .PIDSettings pid_y = 3;</code>
      */
     public com.technoworks.fusionmonitor.Messaging.PIDSettings getPidY() {
       return pidY_;
     }
 
-    // required .messaging.PIDSettings pid_z = 4;
+    // required .PIDSettings pid_z = 4;
     public static final int PID_Z_FIELD_NUMBER = 4;
     private com.technoworks.fusionmonitor.Messaging.PIDSettings pidZ_;
     /**
-     * <code>required .messaging.PIDSettings pid_z = 4;</code>
+     * <code>required .PIDSettings pid_z = 4;</code>
      */
     public boolean hasPidZ() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>required .messaging.PIDSettings pid_z = 4;</code>
+     * <code>required .PIDSettings pid_z = 4;</code>
      */
     public com.technoworks.fusionmonitor.Messaging.PIDSettings getPidZ() {
       return pidZ_;
@@ -1979,7 +1979,7 @@ public final class Messaging {
     public Builder toBuilder() { return newBuilder(this); }
 
     /**
-     * Protobuf type {@code messaging.Settings}
+     * Protobuf type {@code Settings}
      *
      * <pre>
      * Message sended from the PC to the copter.
@@ -2125,22 +2125,22 @@ public final class Messaging {
       }
       private int bitField0_;
 
-      // required .messaging.Vector angle_offset = 1;
+      // required .Vector angle_offset = 1;
       private com.technoworks.fusionmonitor.Messaging.Vector angleOffset_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
       /**
-       * <code>required .messaging.Vector angle_offset = 1;</code>
+       * <code>required .Vector angle_offset = 1;</code>
        */
       public boolean hasAngleOffset() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required .messaging.Vector angle_offset = 1;</code>
+       * <code>required .Vector angle_offset = 1;</code>
        */
       public com.technoworks.fusionmonitor.Messaging.Vector getAngleOffset() {
         return angleOffset_;
       }
       /**
-       * <code>required .messaging.Vector angle_offset = 1;</code>
+       * <code>required .Vector angle_offset = 1;</code>
        */
       public Builder setAngleOffset(com.technoworks.fusionmonitor.Messaging.Vector value) {
         if (value == null) {
@@ -2152,7 +2152,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.Vector angle_offset = 1;</code>
+       * <code>required .Vector angle_offset = 1;</code>
        */
       public Builder setAngleOffset(
           com.technoworks.fusionmonitor.Messaging.Vector.Builder builderForValue) {
@@ -2162,7 +2162,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.Vector angle_offset = 1;</code>
+       * <code>required .Vector angle_offset = 1;</code>
        */
       public Builder mergeAngleOffset(com.technoworks.fusionmonitor.Messaging.Vector value) {
         if (((bitField0_ & 0x00000001) == 0x00000001) &&
@@ -2177,7 +2177,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.Vector angle_offset = 1;</code>
+       * <code>required .Vector angle_offset = 1;</code>
        */
       public Builder clearAngleOffset() {
         angleOffset_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
@@ -2186,22 +2186,22 @@ public final class Messaging {
         return this;
       }
 
-      // required .messaging.PIDSettings pid_x = 2;
+      // required .PIDSettings pid_x = 2;
       private com.technoworks.fusionmonitor.Messaging.PIDSettings pidX_ = com.technoworks.fusionmonitor.Messaging.PIDSettings.getDefaultInstance();
       /**
-       * <code>required .messaging.PIDSettings pid_x = 2;</code>
+       * <code>required .PIDSettings pid_x = 2;</code>
        */
       public boolean hasPidX() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required .messaging.PIDSettings pid_x = 2;</code>
+       * <code>required .PIDSettings pid_x = 2;</code>
        */
       public com.technoworks.fusionmonitor.Messaging.PIDSettings getPidX() {
         return pidX_;
       }
       /**
-       * <code>required .messaging.PIDSettings pid_x = 2;</code>
+       * <code>required .PIDSettings pid_x = 2;</code>
        */
       public Builder setPidX(com.technoworks.fusionmonitor.Messaging.PIDSettings value) {
         if (value == null) {
@@ -2213,7 +2213,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDSettings pid_x = 2;</code>
+       * <code>required .PIDSettings pid_x = 2;</code>
        */
       public Builder setPidX(
           com.technoworks.fusionmonitor.Messaging.PIDSettings.Builder builderForValue) {
@@ -2223,7 +2223,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDSettings pid_x = 2;</code>
+       * <code>required .PIDSettings pid_x = 2;</code>
        */
       public Builder mergePidX(com.technoworks.fusionmonitor.Messaging.PIDSettings value) {
         if (((bitField0_ & 0x00000002) == 0x00000002) &&
@@ -2238,7 +2238,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDSettings pid_x = 2;</code>
+       * <code>required .PIDSettings pid_x = 2;</code>
        */
       public Builder clearPidX() {
         pidX_ = com.technoworks.fusionmonitor.Messaging.PIDSettings.getDefaultInstance();
@@ -2247,22 +2247,22 @@ public final class Messaging {
         return this;
       }
 
-      // required .messaging.PIDSettings pid_y = 3;
+      // required .PIDSettings pid_y = 3;
       private com.technoworks.fusionmonitor.Messaging.PIDSettings pidY_ = com.technoworks.fusionmonitor.Messaging.PIDSettings.getDefaultInstance();
       /**
-       * <code>required .messaging.PIDSettings pid_y = 3;</code>
+       * <code>required .PIDSettings pid_y = 3;</code>
        */
       public boolean hasPidY() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required .messaging.PIDSettings pid_y = 3;</code>
+       * <code>required .PIDSettings pid_y = 3;</code>
        */
       public com.technoworks.fusionmonitor.Messaging.PIDSettings getPidY() {
         return pidY_;
       }
       /**
-       * <code>required .messaging.PIDSettings pid_y = 3;</code>
+       * <code>required .PIDSettings pid_y = 3;</code>
        */
       public Builder setPidY(com.technoworks.fusionmonitor.Messaging.PIDSettings value) {
         if (value == null) {
@@ -2274,7 +2274,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDSettings pid_y = 3;</code>
+       * <code>required .PIDSettings pid_y = 3;</code>
        */
       public Builder setPidY(
           com.technoworks.fusionmonitor.Messaging.PIDSettings.Builder builderForValue) {
@@ -2284,7 +2284,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDSettings pid_y = 3;</code>
+       * <code>required .PIDSettings pid_y = 3;</code>
        */
       public Builder mergePidY(com.technoworks.fusionmonitor.Messaging.PIDSettings value) {
         if (((bitField0_ & 0x00000004) == 0x00000004) &&
@@ -2299,7 +2299,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDSettings pid_y = 3;</code>
+       * <code>required .PIDSettings pid_y = 3;</code>
        */
       public Builder clearPidY() {
         pidY_ = com.technoworks.fusionmonitor.Messaging.PIDSettings.getDefaultInstance();
@@ -2308,22 +2308,22 @@ public final class Messaging {
         return this;
       }
 
-      // required .messaging.PIDSettings pid_z = 4;
+      // required .PIDSettings pid_z = 4;
       private com.technoworks.fusionmonitor.Messaging.PIDSettings pidZ_ = com.technoworks.fusionmonitor.Messaging.PIDSettings.getDefaultInstance();
       /**
-       * <code>required .messaging.PIDSettings pid_z = 4;</code>
+       * <code>required .PIDSettings pid_z = 4;</code>
        */
       public boolean hasPidZ() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>required .messaging.PIDSettings pid_z = 4;</code>
+       * <code>required .PIDSettings pid_z = 4;</code>
        */
       public com.technoworks.fusionmonitor.Messaging.PIDSettings getPidZ() {
         return pidZ_;
       }
       /**
-       * <code>required .messaging.PIDSettings pid_z = 4;</code>
+       * <code>required .PIDSettings pid_z = 4;</code>
        */
       public Builder setPidZ(com.technoworks.fusionmonitor.Messaging.PIDSettings value) {
         if (value == null) {
@@ -2335,7 +2335,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDSettings pid_z = 4;</code>
+       * <code>required .PIDSettings pid_z = 4;</code>
        */
       public Builder setPidZ(
           com.technoworks.fusionmonitor.Messaging.PIDSettings.Builder builderForValue) {
@@ -2345,7 +2345,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDSettings pid_z = 4;</code>
+       * <code>required .PIDSettings pid_z = 4;</code>
        */
       public Builder mergePidZ(com.technoworks.fusionmonitor.Messaging.PIDSettings value) {
         if (((bitField0_ & 0x00000008) == 0x00000008) &&
@@ -2360,7 +2360,7 @@ public final class Messaging {
         return this;
       }
       /**
-       * <code>required .messaging.PIDSettings pid_z = 4;</code>
+       * <code>required .PIDSettings pid_z = 4;</code>
        */
       public Builder clearPidZ() {
         pidZ_ = com.technoworks.fusionmonitor.Messaging.PIDSettings.getDefaultInstance();
@@ -2369,7 +2369,7 @@ public final class Messaging {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:messaging.Settings)
+      // @@protoc_insertion_point(builder_scope:Settings)
     }
 
     static {
@@ -2377,114 +2377,124 @@ public final class Messaging {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:messaging.Settings)
+    // @@protoc_insertion_point(class_scope:Settings)
   }
 
   public interface TelemetryOrBuilder
       extends com.google.protobuf.MessageLiteOrBuilder {
 
-    // required .messaging.Vector torques = 1;
+    // required int64 timestamp = 1;
     /**
-     * <code>required .messaging.Vector torques = 1;</code>
+     * <code>required int64 timestamp = 1;</code>
+     */
+    boolean hasTimestamp();
+    /**
+     * <code>required int64 timestamp = 1;</code>
+     */
+    long getTimestamp();
+
+    // required .Vector torques = 2;
+    /**
+     * <code>required .Vector torques = 2;</code>
      */
     boolean hasTorques();
     /**
-     * <code>required .messaging.Vector torques = 1;</code>
+     * <code>required .Vector torques = 2;</code>
      */
     com.technoworks.fusionmonitor.Messaging.Vector getTorques();
 
-    // required .messaging.Vector angular_velocity = 2;
+    // required .Vector angular_velocity = 3;
     /**
-     * <code>required .messaging.Vector angular_velocity = 2;</code>
+     * <code>required .Vector angular_velocity = 3;</code>
      */
     boolean hasAngularVelocity();
     /**
-     * <code>required .messaging.Vector angular_velocity = 2;</code>
+     * <code>required .Vector angular_velocity = 3;</code>
      */
     com.technoworks.fusionmonitor.Messaging.Vector getAngularVelocity();
 
-    // required .messaging.PIDValues pid_x = 3;
+    // required .PIDValues pid_x = 4;
     /**
-     * <code>required .messaging.PIDValues pid_x = 3;</code>
+     * <code>required .PIDValues pid_x = 4;</code>
      */
     boolean hasPidX();
     /**
-     * <code>required .messaging.PIDValues pid_x = 3;</code>
+     * <code>required .PIDValues pid_x = 4;</code>
      */
     com.technoworks.fusionmonitor.Messaging.PIDValues getPidX();
 
-    // required .messaging.PIDValues pid_y = 4;
+    // required .PIDValues pid_y = 5;
     /**
-     * <code>required .messaging.PIDValues pid_y = 4;</code>
+     * <code>required .PIDValues pid_y = 5;</code>
      */
     boolean hasPidY();
     /**
-     * <code>required .messaging.PIDValues pid_y = 4;</code>
+     * <code>required .PIDValues pid_y = 5;</code>
      */
     com.technoworks.fusionmonitor.Messaging.PIDValues getPidY();
 
-    // required .messaging.PIDValues pid_z = 5;
+    // required .PIDValues pid_z = 6;
     /**
-     * <code>required .messaging.PIDValues pid_z = 5;</code>
+     * <code>required .PIDValues pid_z = 6;</code>
      */
     boolean hasPidZ();
     /**
-     * <code>required .messaging.PIDValues pid_z = 5;</code>
+     * <code>required .PIDValues pid_z = 6;</code>
      */
     com.technoworks.fusionmonitor.Messaging.PIDValues getPidZ();
 
-    // required double heading = 6;
+    // required double heading = 7;
     /**
-     * <code>required double heading = 6;</code>
+     * <code>required double heading = 7;</code>
      */
     boolean hasHeading();
     /**
-     * <code>required double heading = 6;</code>
+     * <code>required double heading = 7;</code>
      */
     double getHeading();
 
-    // required double control_heading = 7;
+    // required double control_heading = 8;
     /**
-     * <code>required double control_heading = 7;</code>
+     * <code>required double control_heading = 8;</code>
      */
     boolean hasControlHeading();
     /**
-     * <code>required double control_heading = 7;</code>
+     * <code>required double control_heading = 8;</code>
      */
     double getControlHeading();
 
-    // required double force = 8;
+    // required double force = 9;
     /**
-     * <code>required double force = 8;</code>
+     * <code>required double force = 9;</code>
      */
     boolean hasForce();
     /**
-     * <code>required double force = 8;</code>
+     * <code>required double force = 9;</code>
      */
     double getForce();
 
-    // required double correction_x = 9;
+    // required double correction_x = 10;
     /**
-     * <code>required double correction_x = 9;</code>
+     * <code>required double correction_x = 10;</code>
      */
     boolean hasCorrectionX();
     /**
-     * <code>required double correction_x = 9;</code>
+     * <code>required double correction_x = 10;</code>
      */
     double getCorrectionX();
 
-    // required double correction_y = 10;
+    // required double correction_y = 11;
     /**
-     * <code>required double correction_y = 10;</code>
+     * <code>required double correction_y = 11;</code>
      */
     boolean hasCorrectionY();
     /**
-     * <code>required double correction_y = 10;</code>
+     * <code>required double correction_y = 11;</code>
      */
     double getCorrectionY();
   }
   /**
-   * Protobuf type {@code messaging.Telemetry}
+   * Protobuf type {@code Telemetry}
    *
    * <pre>
    * Message sended from the Copter to the PC.
@@ -2530,9 +2540,14 @@ public final class Messaging {
               }
               break;
             }
-            case 10: {
+            case 8: {
+              bitField0_ |= 0x00000001;
+              timestamp_ = input.readInt64();
+              break;
+            }
+            case 18: {
               com.technoworks.fusionmonitor.Messaging.Vector.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000001) == 0x00000001)) {
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
                 subBuilder = torques_.toBuilder();
               }
               torques_ = input.readMessage(com.technoworks.fusionmonitor.Messaging.Vector.PARSER, extensionRegistry);
@@ -2540,12 +2555,12 @@ public final class Messaging {
                 subBuilder.mergeFrom(torques_);
                 torques_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000001;
+              bitField0_ |= 0x00000002;
               break;
             }
-            case 18: {
+            case 26: {
               com.technoworks.fusionmonitor.Messaging.Vector.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+              if (((bitField0_ & 0x00000004) == 0x00000004)) {
                 subBuilder = angularVelocity_.toBuilder();
               }
               angularVelocity_ = input.readMessage(com.technoworks.fusionmonitor.Messaging.Vector.PARSER, extensionRegistry);
@@ -2553,12 +2568,12 @@ public final class Messaging {
                 subBuilder.mergeFrom(angularVelocity_);
                 angularVelocity_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000004;
               break;
             }
-            case 26: {
+            case 34: {
               com.technoworks.fusionmonitor.Messaging.PIDValues.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
+              if (((bitField0_ & 0x00000008) == 0x00000008)) {
                 subBuilder = pidX_.toBuilder();
               }
               pidX_ = input.readMessage(com.technoworks.fusionmonitor.Messaging.PIDValues.PARSER, extensionRegistry);
@@ -2566,12 +2581,12 @@ public final class Messaging {
                 subBuilder.mergeFrom(pidX_);
                 pidX_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000008;
               break;
             }
-            case 34: {
+            case 42: {
               com.technoworks.fusionmonitor.Messaging.PIDValues.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+              if (((bitField0_ & 0x00000010) == 0x00000010)) {
                 subBuilder = pidY_.toBuilder();
               }
               pidY_ = input.readMessage(com.technoworks.fusionmonitor.Messaging.PIDValues.PARSER, extensionRegistry);
@@ -2579,12 +2594,12 @@ public final class Messaging {
                 subBuilder.mergeFrom(pidY_);
                 pidY_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000008;
+              bitField0_ |= 0x00000010;
               break;
             }
-            case 42: {
+            case 50: {
               com.technoworks.fusionmonitor.Messaging.PIDValues.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
+              if (((bitField0_ & 0x00000020) == 0x00000020)) {
                 subBuilder = pidZ_.toBuilder();
               }
               pidZ_ = input.readMessage(com.technoworks.fusionmonitor.Messaging.PIDValues.PARSER, extensionRegistry);
@@ -2592,31 +2607,31 @@ public final class Messaging {
                 subBuilder.mergeFrom(pidZ_);
                 pidZ_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000010;
-              break;
-            }
-            case 49: {
               bitField0_ |= 0x00000020;
-              heading_ = input.readDouble();
               break;
             }
             case 57: {
               bitField0_ |= 0x00000040;
-              controlHeading_ = input.readDouble();
+              heading_ = input.readDouble();
               break;
             }
             case 65: {
               bitField0_ |= 0x00000080;
-              force_ = input.readDouble();
+              controlHeading_ = input.readDouble();
               break;
             }
             case 73: {
               bitField0_ |= 0x00000100;
-              correctionX_ = input.readDouble();
+              force_ = input.readDouble();
               break;
             }
             case 81: {
               bitField0_ |= 0x00000200;
+              correctionX_ = input.readDouble();
+              break;
+            }
+            case 89: {
+              bitField0_ |= 0x00000400;
               correctionY_ = input.readDouble();
               break;
             }
@@ -2647,167 +2662,184 @@ public final class Messaging {
     }
 
     private int bitField0_;
-    // required .messaging.Vector torques = 1;
-    public static final int TORQUES_FIELD_NUMBER = 1;
-    private com.technoworks.fusionmonitor.Messaging.Vector torques_;
+    // required int64 timestamp = 1;
+    public static final int TIMESTAMP_FIELD_NUMBER = 1;
+    private long timestamp_;
     /**
-     * <code>required .messaging.Vector torques = 1;</code>
+     * <code>required int64 timestamp = 1;</code>
      */
-    public boolean hasTorques() {
+    public boolean hasTimestamp() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required .messaging.Vector torques = 1;</code>
+     * <code>required int64 timestamp = 1;</code>
+     */
+    public long getTimestamp() {
+      return timestamp_;
+    }
+
+    // required .Vector torques = 2;
+    public static final int TORQUES_FIELD_NUMBER = 2;
+    private com.technoworks.fusionmonitor.Messaging.Vector torques_;
+    /**
+     * <code>required .Vector torques = 2;</code>
+     */
+    public boolean hasTorques() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required .Vector torques = 2;</code>
      */
     public com.technoworks.fusionmonitor.Messaging.Vector getTorques() {
       return torques_;
     }
 
-    // required .messaging.Vector angular_velocity = 2;
-    public static final int ANGULAR_VELOCITY_FIELD_NUMBER = 2;
+    // required .Vector angular_velocity = 3;
+    public static final int ANGULAR_VELOCITY_FIELD_NUMBER = 3;
     private com.technoworks.fusionmonitor.Messaging.Vector angularVelocity_;
     /**
-     * <code>required .messaging.Vector angular_velocity = 2;</code>
+     * <code>required .Vector angular_velocity = 3;</code>
      */
     public boolean hasAngularVelocity() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required .messaging.Vector angular_velocity = 2;</code>
+     * <code>required .Vector angular_velocity = 3;</code>
      */
     public com.technoworks.fusionmonitor.Messaging.Vector getAngularVelocity() {
       return angularVelocity_;
     }
 
-    // required .messaging.PIDValues pid_x = 3;
-    public static final int PID_X_FIELD_NUMBER = 3;
+    // required .PIDValues pid_x = 4;
+    public static final int PID_X_FIELD_NUMBER = 4;
     private com.technoworks.fusionmonitor.Messaging.PIDValues pidX_;
     /**
-     * <code>required .messaging.PIDValues pid_x = 3;</code>
+     * <code>required .PIDValues pid_x = 4;</code>
      */
     public boolean hasPidX() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>required .messaging.PIDValues pid_x = 3;</code>
+     * <code>required .PIDValues pid_x = 4;</code>
      */
     public com.technoworks.fusionmonitor.Messaging.PIDValues getPidX() {
       return pidX_;
     }
 
-    // required .messaging.PIDValues pid_y = 4;
-    public static final int PID_Y_FIELD_NUMBER = 4;
+    // required .PIDValues pid_y = 5;
+    public static final int PID_Y_FIELD_NUMBER = 5;
     private com.technoworks.fusionmonitor.Messaging.PIDValues pidY_;
     /**
-     * <code>required .messaging.PIDValues pid_y = 4;</code>
+     * <code>required .PIDValues pid_y = 5;</code>
      */
     public boolean hasPidY() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>required .messaging.PIDValues pid_y = 4;</code>
+     * <code>required .PIDValues pid_y = 5;</code>
      */
     public com.technoworks.fusionmonitor.Messaging.PIDValues getPidY() {
       return pidY_;
     }
 
-    // required .messaging.PIDValues pid_z = 5;
-    public static final int PID_Z_FIELD_NUMBER = 5;
+    // required .PIDValues pid_z = 6;
+    public static final int PID_Z_FIELD_NUMBER = 6;
     private com.technoworks.fusionmonitor.Messaging.PIDValues pidZ_;
     /**
-     * <code>required .messaging.PIDValues pid_z = 5;</code>
+     * <code>required .PIDValues pid_z = 6;</code>
      */
     public boolean hasPidZ() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
-     * <code>required .messaging.PIDValues pid_z = 5;</code>
+     * <code>required .PIDValues pid_z = 6;</code>
      */
     public com.technoworks.fusionmonitor.Messaging.PIDValues getPidZ() {
       return pidZ_;
     }
 
-    // required double heading = 6;
-    public static final int HEADING_FIELD_NUMBER = 6;
+    // required double heading = 7;
+    public static final int HEADING_FIELD_NUMBER = 7;
     private double heading_;
     /**
-     * <code>required double heading = 6;</code>
+     * <code>required double heading = 7;</code>
      */
     public boolean hasHeading() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
-     * <code>required double heading = 6;</code>
+     * <code>required double heading = 7;</code>
      */
     public double getHeading() {
       return heading_;
     }
 
-    // required double control_heading = 7;
-    public static final int CONTROL_HEADING_FIELD_NUMBER = 7;
+    // required double control_heading = 8;
+    public static final int CONTROL_HEADING_FIELD_NUMBER = 8;
     private double controlHeading_;
     /**
-     * <code>required double control_heading = 7;</code>
+     * <code>required double control_heading = 8;</code>
      */
     public boolean hasControlHeading() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     /**
-     * <code>required double control_heading = 7;</code>
+     * <code>required double control_heading = 8;</code>
      */
     public double getControlHeading() {
       return controlHeading_;
     }
 
-    // required double force = 8;
-    public static final int FORCE_FIELD_NUMBER = 8;
+    // required double force = 9;
+    public static final int FORCE_FIELD_NUMBER = 9;
     private double force_;
     /**
-     * <code>required double force = 8;</code>
+     * <code>required double force = 9;</code>
      */
     public boolean hasForce() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
-     * <code>required double force = 8;</code>
+     * <code>required double force = 9;</code>
      */
     public double getForce() {
       return force_;
     }
 
-    // required double correction_x = 9;
-    public static final int CORRECTION_X_FIELD_NUMBER = 9;
+    // required double correction_x = 10;
+    public static final int CORRECTION_X_FIELD_NUMBER = 10;
     private double correctionX_;
     /**
-     * <code>required double correction_x = 9;</code>
+     * <code>required double correction_x = 10;</code>
      */
     public boolean hasCorrectionX() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
+      return ((bitField0_ & 0x00000200) == 0x00000200);
     }
     /**
-     * <code>required double correction_x = 9;</code>
+     * <code>required double correction_x = 10;</code>
      */
     public double getCorrectionX() {
       return correctionX_;
     }
 
-    // required double correction_y = 10;
-    public static final int CORRECTION_Y_FIELD_NUMBER = 10;
+    // required double correction_y = 11;
+    public static final int CORRECTION_Y_FIELD_NUMBER = 11;
     private double correctionY_;
     /**
-     * <code>required double correction_y = 10;</code>
+     * <code>required double correction_y = 11;</code>
      */
     public boolean hasCorrectionY() {
-      return ((bitField0_ & 0x00000200) == 0x00000200);
+      return ((bitField0_ & 0x00000400) == 0x00000400);
     }
     /**
-     * <code>required double correction_y = 10;</code>
+     * <code>required double correction_y = 11;</code>
      */
     public double getCorrectionY() {
       return correctionY_;
     }
 
     private void initFields() {
+      timestamp_ = 0L;
       torques_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
       angularVelocity_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
       pidX_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
@@ -2824,6 +2856,10 @@ public final class Messaging {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
 
+      if (!hasTimestamp()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasTorques()) {
         memoizedIsInitialized = 0;
         return false;
@@ -2892,34 +2928,37 @@ public final class Messaging {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, torques_);
+        output.writeInt64(1, timestamp_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, angularVelocity_);
+        output.writeMessage(2, torques_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeMessage(3, pidX_);
+        output.writeMessage(3, angularVelocity_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(4, pidY_);
+        output.writeMessage(4, pidX_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(5, pidZ_);
+        output.writeMessage(5, pidY_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeDouble(6, heading_);
+        output.writeMessage(6, pidZ_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeDouble(7, controlHeading_);
+        output.writeDouble(7, heading_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeDouble(8, force_);
+        output.writeDouble(8, controlHeading_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeDouble(9, correctionX_);
+        output.writeDouble(9, force_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        output.writeDouble(10, correctionY_);
+        output.writeDouble(10, correctionX_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        output.writeDouble(11, correctionY_);
       }
     }
 
@@ -2931,43 +2970,47 @@ public final class Messaging {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, torques_);
+          .computeInt64Size(1, timestamp_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, angularVelocity_);
+          .computeMessageSize(2, torques_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, pidX_);
+          .computeMessageSize(3, angularVelocity_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, pidY_);
+          .computeMessageSize(4, pidX_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, pidZ_);
+          .computeMessageSize(5, pidY_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(6, heading_);
+          .computeMessageSize(6, pidZ_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(7, controlHeading_);
+          .computeDoubleSize(7, heading_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(8, force_);
+          .computeDoubleSize(8, controlHeading_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(9, correctionX_);
+          .computeDoubleSize(9, force_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(10, correctionY_);
+          .computeDoubleSize(10, correctionX_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(11, correctionY_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -3041,7 +3084,7 @@ public final class Messaging {
     public Builder toBuilder() { return newBuilder(this); }
 
     /**
-     * Protobuf type {@code messaging.Telemetry}
+     * Protobuf type {@code Telemetry}
      *
      * <pre>
      * Message sended from the Copter to the PC.
@@ -3064,26 +3107,28 @@ public final class Messaging {
 
       public Builder clear() {
         super.clear();
-        torques_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
+        timestamp_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
-        angularVelocity_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
+        torques_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
         bitField0_ = (bitField0_ & ~0x00000002);
-        pidX_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
+        angularVelocity_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
         bitField0_ = (bitField0_ & ~0x00000004);
-        pidY_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
+        pidX_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
         bitField0_ = (bitField0_ & ~0x00000008);
-        pidZ_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
+        pidY_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
         bitField0_ = (bitField0_ & ~0x00000010);
-        heading_ = 0D;
+        pidZ_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
         bitField0_ = (bitField0_ & ~0x00000020);
-        controlHeading_ = 0D;
+        heading_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000040);
-        force_ = 0D;
+        controlHeading_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000080);
-        correctionX_ = 0D;
+        force_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000100);
-        correctionY_ = 0D;
+        correctionX_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000200);
+        correctionY_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000400);
         return this;
       }
 
@@ -3110,41 +3155,45 @@ public final class Messaging {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.torques_ = torques_;
+        result.timestamp_ = timestamp_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.angularVelocity_ = angularVelocity_;
+        result.torques_ = torques_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.pidX_ = pidX_;
+        result.angularVelocity_ = angularVelocity_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.pidY_ = pidY_;
+        result.pidX_ = pidX_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.pidZ_ = pidZ_;
+        result.pidY_ = pidY_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.heading_ = heading_;
+        result.pidZ_ = pidZ_;
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
         }
-        result.controlHeading_ = controlHeading_;
+        result.heading_ = heading_;
         if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000080;
         }
-        result.force_ = force_;
+        result.controlHeading_ = controlHeading_;
         if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
           to_bitField0_ |= 0x00000100;
         }
-        result.correctionX_ = correctionX_;
+        result.force_ = force_;
         if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
           to_bitField0_ |= 0x00000200;
+        }
+        result.correctionX_ = correctionX_;
+        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
+          to_bitField0_ |= 0x00000400;
         }
         result.correctionY_ = correctionY_;
         result.bitField0_ = to_bitField0_;
@@ -3153,6 +3202,9 @@ public final class Messaging {
 
       public Builder mergeFrom(com.technoworks.fusionmonitor.Messaging.Telemetry other) {
         if (other == com.technoworks.fusionmonitor.Messaging.Telemetry.getDefaultInstance()) return this;
+        if (other.hasTimestamp()) {
+          setTimestamp(other.getTimestamp());
+        }
         if (other.hasTorques()) {
           mergeTorques(other.getTorques());
         }
@@ -3187,6 +3239,10 @@ public final class Messaging {
       }
 
       public final boolean isInitialized() {
+        if (!hasTimestamp()) {
+          
+          return false;
+        }
         if (!hasTorques()) {
           
           return false;
@@ -3269,22 +3325,55 @@ public final class Messaging {
       }
       private int bitField0_;
 
-      // required .messaging.Vector torques = 1;
-      private com.technoworks.fusionmonitor.Messaging.Vector torques_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
+      // required int64 timestamp = 1;
+      private long timestamp_ ;
       /**
-       * <code>required .messaging.Vector torques = 1;</code>
+       * <code>required int64 timestamp = 1;</code>
        */
-      public boolean hasTorques() {
+      public boolean hasTimestamp() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required .messaging.Vector torques = 1;</code>
+       * <code>required int64 timestamp = 1;</code>
+       */
+      public long getTimestamp() {
+        return timestamp_;
+      }
+      /**
+       * <code>required int64 timestamp = 1;</code>
+       */
+      public Builder setTimestamp(long value) {
+        bitField0_ |= 0x00000001;
+        timestamp_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>required int64 timestamp = 1;</code>
+       */
+      public Builder clearTimestamp() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        timestamp_ = 0L;
+        
+        return this;
+      }
+
+      // required .Vector torques = 2;
+      private com.technoworks.fusionmonitor.Messaging.Vector torques_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
+      /**
+       * <code>required .Vector torques = 2;</code>
+       */
+      public boolean hasTorques() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required .Vector torques = 2;</code>
        */
       public com.technoworks.fusionmonitor.Messaging.Vector getTorques() {
         return torques_;
       }
       /**
-       * <code>required .messaging.Vector torques = 1;</code>
+       * <code>required .Vector torques = 2;</code>
        */
       public Builder setTorques(com.technoworks.fusionmonitor.Messaging.Vector value) {
         if (value == null) {
@@ -3292,24 +3381,24 @@ public final class Messaging {
         }
         torques_ = value;
 
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>required .messaging.Vector torques = 1;</code>
+       * <code>required .Vector torques = 2;</code>
        */
       public Builder setTorques(
           com.technoworks.fusionmonitor.Messaging.Vector.Builder builderForValue) {
         torques_ = builderForValue.build();
 
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>required .messaging.Vector torques = 1;</code>
+       * <code>required .Vector torques = 2;</code>
        */
       public Builder mergeTorques(com.technoworks.fusionmonitor.Messaging.Vector value) {
-        if (((bitField0_ & 0x00000001) == 0x00000001) &&
+        if (((bitField0_ & 0x00000002) == 0x00000002) &&
             torques_ != com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance()) {
           torques_ =
             com.technoworks.fusionmonitor.Messaging.Vector.newBuilder(torques_).mergeFrom(value).buildPartial();
@@ -3317,35 +3406,35 @@ public final class Messaging {
           torques_ = value;
         }
 
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>required .messaging.Vector torques = 1;</code>
+       * <code>required .Vector torques = 2;</code>
        */
       public Builder clearTorques() {
         torques_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
 
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
-      // required .messaging.Vector angular_velocity = 2;
+      // required .Vector angular_velocity = 3;
       private com.technoworks.fusionmonitor.Messaging.Vector angularVelocity_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
       /**
-       * <code>required .messaging.Vector angular_velocity = 2;</code>
+       * <code>required .Vector angular_velocity = 3;</code>
        */
       public boolean hasAngularVelocity() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required .messaging.Vector angular_velocity = 2;</code>
+       * <code>required .Vector angular_velocity = 3;</code>
        */
       public com.technoworks.fusionmonitor.Messaging.Vector getAngularVelocity() {
         return angularVelocity_;
       }
       /**
-       * <code>required .messaging.Vector angular_velocity = 2;</code>
+       * <code>required .Vector angular_velocity = 3;</code>
        */
       public Builder setAngularVelocity(com.technoworks.fusionmonitor.Messaging.Vector value) {
         if (value == null) {
@@ -3353,24 +3442,24 @@ public final class Messaging {
         }
         angularVelocity_ = value;
 
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>required .messaging.Vector angular_velocity = 2;</code>
+       * <code>required .Vector angular_velocity = 3;</code>
        */
       public Builder setAngularVelocity(
           com.technoworks.fusionmonitor.Messaging.Vector.Builder builderForValue) {
         angularVelocity_ = builderForValue.build();
 
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>required .messaging.Vector angular_velocity = 2;</code>
+       * <code>required .Vector angular_velocity = 3;</code>
        */
       public Builder mergeAngularVelocity(com.technoworks.fusionmonitor.Messaging.Vector value) {
-        if (((bitField0_ & 0x00000002) == 0x00000002) &&
+        if (((bitField0_ & 0x00000004) == 0x00000004) &&
             angularVelocity_ != com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance()) {
           angularVelocity_ =
             com.technoworks.fusionmonitor.Messaging.Vector.newBuilder(angularVelocity_).mergeFrom(value).buildPartial();
@@ -3378,35 +3467,35 @@ public final class Messaging {
           angularVelocity_ = value;
         }
 
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>required .messaging.Vector angular_velocity = 2;</code>
+       * <code>required .Vector angular_velocity = 3;</code>
        */
       public Builder clearAngularVelocity() {
         angularVelocity_ = com.technoworks.fusionmonitor.Messaging.Vector.getDefaultInstance();
 
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
-      // required .messaging.PIDValues pid_x = 3;
+      // required .PIDValues pid_x = 4;
       private com.technoworks.fusionmonitor.Messaging.PIDValues pidX_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
       /**
-       * <code>required .messaging.PIDValues pid_x = 3;</code>
+       * <code>required .PIDValues pid_x = 4;</code>
        */
       public boolean hasPidX() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>required .messaging.PIDValues pid_x = 3;</code>
+       * <code>required .PIDValues pid_x = 4;</code>
        */
       public com.technoworks.fusionmonitor.Messaging.PIDValues getPidX() {
         return pidX_;
       }
       /**
-       * <code>required .messaging.PIDValues pid_x = 3;</code>
+       * <code>required .PIDValues pid_x = 4;</code>
        */
       public Builder setPidX(com.technoworks.fusionmonitor.Messaging.PIDValues value) {
         if (value == null) {
@@ -3414,24 +3503,24 @@ public final class Messaging {
         }
         pidX_ = value;
 
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues pid_x = 3;</code>
+       * <code>required .PIDValues pid_x = 4;</code>
        */
       public Builder setPidX(
           com.technoworks.fusionmonitor.Messaging.PIDValues.Builder builderForValue) {
         pidX_ = builderForValue.build();
 
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues pid_x = 3;</code>
+       * <code>required .PIDValues pid_x = 4;</code>
        */
       public Builder mergePidX(com.technoworks.fusionmonitor.Messaging.PIDValues value) {
-        if (((bitField0_ & 0x00000004) == 0x00000004) &&
+        if (((bitField0_ & 0x00000008) == 0x00000008) &&
             pidX_ != com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance()) {
           pidX_ =
             com.technoworks.fusionmonitor.Messaging.PIDValues.newBuilder(pidX_).mergeFrom(value).buildPartial();
@@ -3439,35 +3528,35 @@ public final class Messaging {
           pidX_ = value;
         }
 
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues pid_x = 3;</code>
+       * <code>required .PIDValues pid_x = 4;</code>
        */
       public Builder clearPidX() {
         pidX_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
 
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
-      // required .messaging.PIDValues pid_y = 4;
+      // required .PIDValues pid_y = 5;
       private com.technoworks.fusionmonitor.Messaging.PIDValues pidY_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
       /**
-       * <code>required .messaging.PIDValues pid_y = 4;</code>
+       * <code>required .PIDValues pid_y = 5;</code>
        */
       public boolean hasPidY() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>required .messaging.PIDValues pid_y = 4;</code>
+       * <code>required .PIDValues pid_y = 5;</code>
        */
       public com.technoworks.fusionmonitor.Messaging.PIDValues getPidY() {
         return pidY_;
       }
       /**
-       * <code>required .messaging.PIDValues pid_y = 4;</code>
+       * <code>required .PIDValues pid_y = 5;</code>
        */
       public Builder setPidY(com.technoworks.fusionmonitor.Messaging.PIDValues value) {
         if (value == null) {
@@ -3475,24 +3564,24 @@ public final class Messaging {
         }
         pidY_ = value;
 
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues pid_y = 4;</code>
+       * <code>required .PIDValues pid_y = 5;</code>
        */
       public Builder setPidY(
           com.technoworks.fusionmonitor.Messaging.PIDValues.Builder builderForValue) {
         pidY_ = builderForValue.build();
 
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues pid_y = 4;</code>
+       * <code>required .PIDValues pid_y = 5;</code>
        */
       public Builder mergePidY(com.technoworks.fusionmonitor.Messaging.PIDValues value) {
-        if (((bitField0_ & 0x00000008) == 0x00000008) &&
+        if (((bitField0_ & 0x00000010) == 0x00000010) &&
             pidY_ != com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance()) {
           pidY_ =
             com.technoworks.fusionmonitor.Messaging.PIDValues.newBuilder(pidY_).mergeFrom(value).buildPartial();
@@ -3500,35 +3589,35 @@ public final class Messaging {
           pidY_ = value;
         }
 
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues pid_y = 4;</code>
+       * <code>required .PIDValues pid_y = 5;</code>
        */
       public Builder clearPidY() {
         pidY_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
 
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
-      // required .messaging.PIDValues pid_z = 5;
+      // required .PIDValues pid_z = 6;
       private com.technoworks.fusionmonitor.Messaging.PIDValues pidZ_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
       /**
-       * <code>required .messaging.PIDValues pid_z = 5;</code>
+       * <code>required .PIDValues pid_z = 6;</code>
        */
       public boolean hasPidZ() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
-       * <code>required .messaging.PIDValues pid_z = 5;</code>
+       * <code>required .PIDValues pid_z = 6;</code>
        */
       public com.technoworks.fusionmonitor.Messaging.PIDValues getPidZ() {
         return pidZ_;
       }
       /**
-       * <code>required .messaging.PIDValues pid_z = 5;</code>
+       * <code>required .PIDValues pid_z = 6;</code>
        */
       public Builder setPidZ(com.technoworks.fusionmonitor.Messaging.PIDValues value) {
         if (value == null) {
@@ -3536,24 +3625,24 @@ public final class Messaging {
         }
         pidZ_ = value;
 
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues pid_z = 5;</code>
+       * <code>required .PIDValues pid_z = 6;</code>
        */
       public Builder setPidZ(
           com.technoworks.fusionmonitor.Messaging.PIDValues.Builder builderForValue) {
         pidZ_ = builderForValue.build();
 
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues pid_z = 5;</code>
+       * <code>required .PIDValues pid_z = 6;</code>
        */
       public Builder mergePidZ(com.technoworks.fusionmonitor.Messaging.PIDValues value) {
-        if (((bitField0_ & 0x00000010) == 0x00000010) &&
+        if (((bitField0_ & 0x00000020) == 0x00000020) &&
             pidZ_ != com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance()) {
           pidZ_ =
             com.technoworks.fusionmonitor.Messaging.PIDValues.newBuilder(pidZ_).mergeFrom(value).buildPartial();
@@ -3561,185 +3650,185 @@ public final class Messaging {
           pidZ_ = value;
         }
 
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       /**
-       * <code>required .messaging.PIDValues pid_z = 5;</code>
+       * <code>required .PIDValues pid_z = 6;</code>
        */
       public Builder clearPidZ() {
         pidZ_ = com.technoworks.fusionmonitor.Messaging.PIDValues.getDefaultInstance();
 
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
-      // required double heading = 6;
+      // required double heading = 7;
       private double heading_ ;
       /**
-       * <code>required double heading = 6;</code>
+       * <code>required double heading = 7;</code>
        */
       public boolean hasHeading() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
-       * <code>required double heading = 6;</code>
+       * <code>required double heading = 7;</code>
        */
       public double getHeading() {
         return heading_;
       }
       /**
-       * <code>required double heading = 6;</code>
+       * <code>required double heading = 7;</code>
        */
       public Builder setHeading(double value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         heading_ = value;
         
         return this;
       }
       /**
-       * <code>required double heading = 6;</code>
+       * <code>required double heading = 7;</code>
        */
       public Builder clearHeading() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         heading_ = 0D;
         
         return this;
       }
 
-      // required double control_heading = 7;
+      // required double control_heading = 8;
       private double controlHeading_ ;
       /**
-       * <code>required double control_heading = 7;</code>
+       * <code>required double control_heading = 8;</code>
        */
       public boolean hasControlHeading() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       /**
-       * <code>required double control_heading = 7;</code>
+       * <code>required double control_heading = 8;</code>
        */
       public double getControlHeading() {
         return controlHeading_;
       }
       /**
-       * <code>required double control_heading = 7;</code>
+       * <code>required double control_heading = 8;</code>
        */
       public Builder setControlHeading(double value) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         controlHeading_ = value;
         
         return this;
       }
       /**
-       * <code>required double control_heading = 7;</code>
+       * <code>required double control_heading = 8;</code>
        */
       public Builder clearControlHeading() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         controlHeading_ = 0D;
         
         return this;
       }
 
-      // required double force = 8;
+      // required double force = 9;
       private double force_ ;
       /**
-       * <code>required double force = 8;</code>
+       * <code>required double force = 9;</code>
        */
       public boolean hasForce() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       /**
-       * <code>required double force = 8;</code>
+       * <code>required double force = 9;</code>
        */
       public double getForce() {
         return force_;
       }
       /**
-       * <code>required double force = 8;</code>
+       * <code>required double force = 9;</code>
        */
       public Builder setForce(double value) {
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         force_ = value;
         
         return this;
       }
       /**
-       * <code>required double force = 8;</code>
+       * <code>required double force = 9;</code>
        */
       public Builder clearForce() {
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         force_ = 0D;
         
         return this;
       }
 
-      // required double correction_x = 9;
+      // required double correction_x = 10;
       private double correctionX_ ;
       /**
-       * <code>required double correction_x = 9;</code>
+       * <code>required double correction_x = 10;</code>
        */
       public boolean hasCorrectionX() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
+        return ((bitField0_ & 0x00000200) == 0x00000200);
       }
       /**
-       * <code>required double correction_x = 9;</code>
+       * <code>required double correction_x = 10;</code>
        */
       public double getCorrectionX() {
         return correctionX_;
       }
       /**
-       * <code>required double correction_x = 9;</code>
+       * <code>required double correction_x = 10;</code>
        */
       public Builder setCorrectionX(double value) {
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         correctionX_ = value;
         
         return this;
       }
       /**
-       * <code>required double correction_x = 9;</code>
+       * <code>required double correction_x = 10;</code>
        */
       public Builder clearCorrectionX() {
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         correctionX_ = 0D;
         
         return this;
       }
 
-      // required double correction_y = 10;
+      // required double correction_y = 11;
       private double correctionY_ ;
       /**
-       * <code>required double correction_y = 10;</code>
+       * <code>required double correction_y = 11;</code>
        */
       public boolean hasCorrectionY() {
-        return ((bitField0_ & 0x00000200) == 0x00000200);
+        return ((bitField0_ & 0x00000400) == 0x00000400);
       }
       /**
-       * <code>required double correction_y = 10;</code>
+       * <code>required double correction_y = 11;</code>
        */
       public double getCorrectionY() {
         return correctionY_;
       }
       /**
-       * <code>required double correction_y = 10;</code>
+       * <code>required double correction_y = 11;</code>
        */
       public Builder setCorrectionY(double value) {
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000400;
         correctionY_ = value;
         
         return this;
       }
       /**
-       * <code>required double correction_y = 10;</code>
+       * <code>required double correction_y = 11;</code>
        */
       public Builder clearCorrectionY() {
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000400);
         correctionY_ = 0D;
         
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:messaging.Telemetry)
+      // @@protoc_insertion_point(builder_scope:Telemetry)
     }
 
     static {
@@ -3747,7 +3836,7 @@ public final class Messaging {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:messaging.Telemetry)
+    // @@protoc_insertion_point(class_scope:Telemetry)
   }
 
 

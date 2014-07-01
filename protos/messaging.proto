@@ -31,14 +31,15 @@ message Settings {
  
 // Message sended from the Copter to the PC.
 message Telemetry {
-  required Vector torques = 1;
-  required Vector angular_velocity = 2;
-  required PIDValues pid_x = 3;
-  required PIDValues pid_y = 4;
-  required PIDValues pid_z = 5;
-  required double heading = 6;
-  required double control_heading = 7;
-  required double force = 8;
-  required double correction_x = 9;
-  required double correction_y = 10;
+  required int64 timestamp = 1;
+  required Vector torques = 2;
+  required Vector angular_velocity = 3;
+  required PIDValues pid_x = 4;
+  required PIDValues pid_y = 5;
+  required PIDValues pid_z = 6;
+  required double heading = 7;
+  required double control_heading = 8;
+  required double force = 9;
+  required double correction_x = 10;
+  required double correction_y = 11;
 }

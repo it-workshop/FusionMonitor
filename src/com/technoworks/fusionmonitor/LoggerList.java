@@ -6,17 +6,14 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
+import static com.technoworks.fusionmonitor.Messaging.Telemetry;
+
 /**
  * Created by Всеволод on 18.06.2014.
  */
-public class LoggerList<V> extends LinkedList<Timestamped<V>>
+public class LoggerList extends LinkedList<Telemetry>
 {
     private int position = 0;
-
-    public void put(V data)
-    {
-        offer(new Timestamped<V>(data));
-    }
 
     public long getLogTimeLength()
     {
@@ -31,11 +28,11 @@ public class LoggerList<V> extends LinkedList<Timestamped<V>>
             return;
         }
 
-        ListIterator<Timestamped<V>> iterator = listIterator();
+        ListIterator<Telemetry> iterator = listIterator();
         long span = 0;
         position = 0;
 
-        Timestamped<V> current = iterator.next();
+        Telemetry current = iterator.next();
         while(span < millis)
         {
             span += current.getTimestamp();
@@ -45,21 +42,21 @@ public class LoggerList<V> extends LinkedList<Timestamped<V>>
         }
     }
 
-    public V getLastOne()
+    public Telemetry getLastOne()
     {
-        return get(position).getData();
+        return get(position);
     }
 
-    public ArrayList<V> getLastN(int n)
+    public ArrayList<Telemetry> getLastN(int n)
     {
-        ArrayList<V> result = new ArrayList<V>(n);
-        ListIterator<Timestamped<V>> iterator = listIterator(position);
+        ArrayList<Telemetry> result = new ArrayList<Telemetry>(n);
+        ListIterator<Telemetry> iterator = listIterator(position);
 
         for(int i = 0; i < n; i++)
         {
             try
             {
-                result.add(iterator.next().getData());
+                result.add(iterator.next());
             }
             catch (NoSuchElementException e)
             {
@@ -69,21 +66,21 @@ public class LoggerList<V> extends LinkedList<Timestamped<V>>
         return result;
     }
 
-    public ArrayList<V> getLastMillis(long millis)
+    public ArrayList<Telemetry> getLastMillis(long millis)
     {
-        ArrayList<V> result = new ArrayList<V>();
-        ListIterator<Timestamped<V>> iterator = listIterator(position);
+        ArrayList<Telemetry> result = new ArrayList<Telemetry>();
+        ListIterator<Telemetry> iterator = listIterator(position);
         long span = 0;
 
         try
         {
-            Timestamped<V> current = iterator.next();
-            result.add(current.getData());
+            Telemetry current = iterator.next();
+            result.add(current);
             while (span < millis)
             {
                 span += current.getTimestamp();
                 current = iterator.next();
-                result.add(current.getData());
+                result.add(current);
                 span -= current.getTimestamp();
             }
         }
