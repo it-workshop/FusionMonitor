@@ -13,7 +13,36 @@ import static com.technoworks.fusionmonitor.Messaging.Telemetry;
  */
 public class LoggerList extends LinkedList<Telemetry>
 {
-    private int position = 0;
+    private int position;
+    private Telemetry mNullTelemetry;
+
+    public LoggerList()
+    {
+        position = 0;
+        Messaging.Vector vector = Messaging.Vector.newBuilder()
+                .setX(0)
+                .setY(0)
+                .setZ(0)
+                .build();
+        Messaging.PIDValues pidValues = Messaging.PIDValues.newBuilder()
+                .setP(0)
+                .setI(0)
+                .setD(0)
+                .build();
+        mNullTelemetry = Telemetry.newBuilder()
+                .setTimestamp(0)
+                .setTorques(vector)
+                .setAngularVelocity(vector)
+                .setPidX(pidValues)
+                .setPidY(pidValues)
+                .setPidZ(pidValues)
+                .setHeading(0)
+                .setControlHeading(0)
+                .setForce(0)
+                .setCorrectionX(0)
+                .setCorrectionY(0)
+                .build();
+    }
 
     public long getLogTimeLength()
     {
@@ -44,7 +73,14 @@ public class LoggerList extends LinkedList<Telemetry>
 
     public Telemetry getLastOne()
     {
-        return get(position);
+        try
+        {
+            return get(position);
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            return mNullTelemetry;
+        }
     }
 
     public ArrayList<Telemetry> getLastN(int n)

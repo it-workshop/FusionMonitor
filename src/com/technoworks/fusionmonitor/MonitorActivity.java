@@ -34,7 +34,8 @@ public class MonitorActivity extends Activity
     private boolean mEditMode;
     private boolean mSimulationOn;
     public LoggerList mLog;
-    private Simulation mSimulation;
+    private SimulationThread mSimulationThread;
+    private DrawingThread mDrawingThread;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -43,6 +44,7 @@ public class MonitorActivity extends Activity
 
         mWidgets = new ArrayList<Widget>();
         mLog = new LoggerList();
+        mDrawingThread = new DrawingThread(mWidgets);
 
         DisplayMetrics metrics = new DisplayMetrics();
         Display display = getWindow().getWindowManager().getDefaultDisplay();
@@ -120,12 +122,12 @@ public class MonitorActivity extends Activity
                 if(mSimulationOn)
                 {
                     item.setIcon(R.drawable.ic_action_pause);
-                    mSimulation = new Simulation(mLog);
+                    mSimulationThread = new SimulationThread(mLog);
                 }
                 else
                 {
                     item.setIcon(R.drawable.ic_action_play);
-                    mSimulation.finish();
+                    mSimulationThread.finish();
                 }
                 return true;
             default:

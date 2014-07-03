@@ -3,7 +3,7 @@ package com.technoworks.fusionmonitor;
 /**
  * Created by Всеволод on 01.07.2014.
  */
-public class Simulation extends Thread
+public class SimulationThread extends Thread
 {
     public static long OSCILLATOR_PERIOD_MILLIS = 1000;
 
@@ -12,7 +12,7 @@ public class Simulation extends Thread
     private long mStartTimestamp;
     private boolean mIsFinished;
 
-    public Simulation(LoggerList log)
+    public SimulationThread(LoggerList log)
     {
         mLog = log;
         mOscillator = 0;

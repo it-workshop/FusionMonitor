@@ -26,7 +26,7 @@ public class Widget extends View
 
     private int mPadding;
     private boolean mIsInEditMode;
-    private MonitorActivity mMonitorActivity;
+    protected MonitorActivity mMonitorActivity;
 
     public Rect mPlacement;
 
@@ -95,6 +95,11 @@ public class Widget extends View
     {
         mPlacement.offsetTo(left, top);
         setPlacement();
+    }
+
+    public void draw()
+    {
+        invalidate();
     }
 
     protected class EditModeTouchListener implements OnTouchListener

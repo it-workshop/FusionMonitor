@@ -36,7 +36,7 @@ public class TextWidget extends Widget
     @Override
     protected void onDraw(Canvas canvas)
     {
-        updateText(canvas.getWidth(), canvas.getHeight());
+        updateText();
 
         float max = 0;
         float w = 1.0f / canvas.getWidth();
@@ -55,11 +55,9 @@ public class TextWidget extends Widget
         }
     }
 
-    protected void updateText(int w, int h)
+    protected void updateText()
     {
         mText.clear();
-        mText.add("draw calls : " + mDrawCalls++);
-        mText.add("drawing size = (" + w + "," + h + ")");
-        mText.add("total memory = " + (Runtime.getRuntime().totalMemory() >> 10) + " kb");
+        mText.add(String.valueOf(mMonitorActivity.mLog.getLastOne().getForce()));
     }
 }
