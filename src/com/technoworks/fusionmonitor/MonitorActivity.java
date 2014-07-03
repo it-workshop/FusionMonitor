@@ -35,7 +35,6 @@ public class MonitorActivity extends Activity
     private boolean mSimulationOn;
     public LoggerList mLog;
     private SimulationThread mSimulationThread;
-    private DrawingThread mDrawingThread;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -43,8 +42,7 @@ public class MonitorActivity extends Activity
         super.onCreate(savedInstanceState);
 
         mWidgets = new ArrayList<Widget>();
-        mLog = new LoggerList();
-        mDrawingThread = new DrawingThread(mWidgets);
+        mLog = new LoggerList(mWidgets);
 
         DisplayMetrics metrics = new DisplayMetrics();
         Display display = getWindow().getWindowManager().getDefaultDisplay();

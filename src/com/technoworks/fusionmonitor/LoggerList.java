@@ -15,9 +15,12 @@ public class LoggerList extends LinkedList<Telemetry>
 {
     private int position;
     private Telemetry mNullTelemetry;
+    private DrawTaskManager mDrawTaskManager;
 
-    public LoggerList()
+    public LoggerList(ArrayList<Widget> widgets)
     {
+        mDrawTaskManager = new DrawTaskManager(widgets);
+
         position = 0;
         Messaging.Vector vector = Messaging.Vector.newBuilder()
                 .setX(0)
@@ -47,6 +50,12 @@ public class LoggerList extends LinkedList<Telemetry>
     public long getLogTimeLength()
     {
         return getFirst().getTimestamp() - getLast().getTimestamp();
+    }
+
+    public void put(Telemetry telemetry)
+    {
+        push(telemetry);
+        mDrawTaskManager.draw();
     }
 
     public void setPosition(long millis)

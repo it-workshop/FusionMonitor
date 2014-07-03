@@ -54,7 +54,7 @@ public class SimulationThread extends Thread
                     .setCorrectionX(mOscillator)
                     .setCorrectionY(mOscillator)
                     .build();
-            mLog.offer(telemetry);
+            mLog.put(telemetry);
             try
             {
                 sleep(97);

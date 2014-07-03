@@ -51,7 +51,7 @@ public class TextWidget extends Widget
 
         for (int i = 0; i < mText.size(); i++)
         {
-            canvas.drawText(mText.get(i), INDENT + getPaddingLeft(), mTextBounds.height() * (i + 1) + getPaddingTop(), mPaint);
+            canvas.drawText(mText.get(i), INDENT + getPaddingLeft(), mTextBounds.height() * (i + 1) + getPaddingTop() + INDENT, mPaint);
         }
     }
 

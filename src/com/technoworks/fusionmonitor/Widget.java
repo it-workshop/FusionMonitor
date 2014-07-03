@@ -19,7 +19,7 @@ import android.widget.RelativeLayout;
 /**
  * Created by Всеволод on 11.05.2014.
  */
-public class Widget extends SurfaceView implements SurfaceHolder.Callback
+public class Widget extends View
 {
     public static final int PADDING_DP = 5;
     protected static final int[] DEFAULT_SIZE = {3, 3};
@@ -27,9 +27,8 @@ public class Widget extends SurfaceView implements SurfaceHolder.Callback
     protected OnTouchListener mInnerListener = null;
     protected EditModeTouchListener mEditModeTouchListener;
 
-    public SurfaceHolder mSurfaceHolder;
     private int mPadding;
-    private boolean mIsInEditMode;
+    public boolean mIsInEditMode = false;
     protected MonitorActivity mMonitorActivity;
 
     public Rect mPlacement;
@@ -37,17 +36,12 @@ public class Widget extends SurfaceView implements SurfaceHolder.Callback
     public Widget(Context context)
     {
         super(context);
-        setZOrderOnTop(true);
-        mSurfaceHolder = getHolder();
-        mSurfaceHolder.addCallback(this);
-        mSurfaceHolder.setFormat(PixelFormat.TRANSPARENT);
 
         mPlacement = new Rect(0, 0, DEFAULT_SIZE[0], DEFAULT_SIZE[1]);
 
         mEditModeTouchListener = new EditModeTouchListener();
         mMonitorActivity = (MonitorActivity) context;
         mPadding = (int) (mMonitorActivity.mScreenDensity * PADDING_DP);
-        mIsInEditMode = false;
 
         Drawable[] background = new Drawable[2];
 
@@ -74,6 +68,7 @@ public class Widget extends SurfaceView implements SurfaceHolder.Callback
 
     public void setEditMode(boolean editMode)
     {
+        mIsInEditMode = editMode;
         if (editMode)
             setOnTouchListener(mEditModeTouchListener);
         else
@@ -105,29 +100,6 @@ public class Widget extends SurfaceView implements SurfaceHolder.Callback
         setPlacement();
     }
 
-    public void draw()
-    {
-        invalidate();
-    }
-
-    @Override
-    public void surfaceCreated(SurfaceHolder holder)
-    {
-
-    }
-
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height)
-    {
-
-    }
-
-    @Override
-    public void surfaceDestroyed(SurfaceHolder holder)
-    {
-
-    }
-
     protected class EditModeTouchListener implements OnTouchListener
     {
         public static final int MODE_DRAG = 0;
@@ -136,7 +108,7 @@ public class Widget extends SurfaceView implements SurfaceHolder.Callback
         public static final int MODE_RESIZE_BOTTOM = 4;
         public static final int MODE_RESIZE_LEFT = 8;
 
-        public static final float RESIZE_BORDERS_INSET_MULTIPLIER = 8;
+        public static final float RESIZE_BORDERS_INSET_MULTIPLIER = 3;
 
         private int mMode;
         private float mRelativeInitX;
