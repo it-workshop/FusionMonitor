@@ -1,6 +1,7 @@
 package com.technoworks.fusionmonitor;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,16 @@ public class DrawingThread extends Thread
         {
             for (int i = 0; i < mWidgets.size(); i++)
             {
-                mWidgets.get(i).draw();
+                try
+                {
+                    Canvas canvas = mWidgets.get(i).mSurfaceHolder.lockCanvas();
+                    mWidgets.get(i).draw(canvas);
+                    mWidgets.get(i).mSurfaceHolder.unlockCanvasAndPost(canvas);
+                }
+                catch(NullPointerException e)
+                {
+                    e.printStackTrace();
+                }
             }
         }
     }

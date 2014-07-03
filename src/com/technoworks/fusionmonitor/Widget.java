@@ -3,6 +3,7 @@ package com.technoworks.fusionmonitor;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
@@ -10,13 +11,15 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 /**
  * Created by Всеволод on 11.05.2014.
  */
-public class Widget extends View
+public class Widget extends SurfaceView implements SurfaceHolder.Callback
 {
     public static final int PADDING_DP = 5;
     protected static final int[] DEFAULT_SIZE = {3, 3};
@@ -24,6 +27,7 @@ public class Widget extends View
     protected OnTouchListener mInnerListener = null;
     protected EditModeTouchListener mEditModeTouchListener;
 
+    public SurfaceHolder mSurfaceHolder;
     private int mPadding;
     private boolean mIsInEditMode;
     protected MonitorActivity mMonitorActivity;
@@ -33,6 +37,10 @@ public class Widget extends View
     public Widget(Context context)
     {
         super(context);
+        setZOrderOnTop(true);
+        mSurfaceHolder = getHolder();
+        mSurfaceHolder.addCallback(this);
+        mSurfaceHolder.setFormat(PixelFormat.TRANSPARENT);
 
         mPlacement = new Rect(0, 0, DEFAULT_SIZE[0], DEFAULT_SIZE[1]);
 
@@ -100,6 +108,24 @@ public class Widget extends View
     public void draw()
     {
         invalidate();
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder)
+    {
+
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height)
+    {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder)
+    {
+
     }
 
     protected class EditModeTouchListener implements OnTouchListener
