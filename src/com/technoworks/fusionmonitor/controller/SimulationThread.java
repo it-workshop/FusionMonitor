@@ -1,7 +1,10 @@
-package com.technoworks.fusionmonitor;
+package com.technoworks.fusionmonitor.controller;
+
+import com.technoworks.fusionmonitor.Messaging;
+import com.technoworks.fusionmonitor.model.LoggerList;
 
 /**
- * Created by Всеволод on 01.07.2014.
+ * Created by Vsevolod on 01.07.2014.
  */
 public class SimulationThread extends Thread
 {

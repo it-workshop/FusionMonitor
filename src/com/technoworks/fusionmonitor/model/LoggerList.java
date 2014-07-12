@@ -1,5 +1,9 @@
-package com.technoworks.fusionmonitor;
+package com.technoworks.fusionmonitor.model;
 
+
+import com.technoworks.fusionmonitor.Messaging;
+import com.technoworks.fusionmonitor.view.drawing.DrawTaskManager;
+import com.technoworks.fusionmonitor.view.widgets.Widget;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,7 +13,7 @@ import java.util.NoSuchElementException;
 import static com.technoworks.fusionmonitor.Messaging.Telemetry;
 
 /**
- * Created by Всеволод on 18.06.2014.
+ * Created by Vsevolod on 18.06.2014.
  */
 public class LoggerList extends LinkedList<Telemetry>
 {

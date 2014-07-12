@@ -1,9 +1,10 @@
-package com.technoworks.fusionmonitor;
+package com.technoworks.fusionmonitor.view.widgets;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import com.technoworks.fusionmonitor.MonitorActivity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,8 @@
-package com.technoworks.fusionmonitor;
+package com.technoworks.fusionmonitor.view.widgets;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
@@ -11,15 +10,14 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.RelativeLayout;
+import com.technoworks.fusionmonitor.MonitorActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by Всеволод on 11.05.2014.
+ * Created by Vsevolod on 11.05.2014.
  */
 public class Widget extends View
 {
@@ -93,12 +91,12 @@ public class Widget extends View
         return settings.toString();
     }
 
-    protected JSONObject saveSettings()
+    public JSONObject saveSettings()
     {
         return new JSONObject();
     }
 
-    protected void loadSettings(JSONObject settings)
+    public void loadSettings(JSONObject settings)
     {
         return;
     }

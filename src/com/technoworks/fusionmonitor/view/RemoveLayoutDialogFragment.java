@@ -1,4 +1,4 @@
-package com.technoworks.fusionmonitor;
+package com.technoworks.fusionmonitor.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -6,13 +6,12 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import com.technoworks.fusionmonitor.MonitorActivity;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
 
 /**
- * Created by Всеволод on 11.07.2014.
+ * Created by Vsevolod on 11.07.2014.
  */
 public class RemoveLayoutDialogFragment extends DialogFragment
 {

@@ -1,4 +1,4 @@
-package com.technoworks.fusionmonitor;
+package com.technoworks.fusionmonitor.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,9 +8,10 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+import com.technoworks.fusionmonitor.MonitorActivity;
 
 /**
- * Created by Всеволод on 11.07.2014.
+ * Created by Vsevolod on 11.07.2014.
  */
 public class SaveLayoutDialogFragment extends DialogFragment
 {

@@ -1,6 +1,8 @@
-package com.technoworks.fusionmonitor;
+package com.technoworks.fusionmonitor.view.widgets;
 
 import android.content.Context;
+import com.technoworks.fusionmonitor.view.widgets.TextWidget;
+import com.technoworks.fusionmonitor.view.widgets.Widget;
 import org.json.JSONObject;
 
 import java.lang.reflect.Constructor;
@@ -8,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Всеволод on 11.07.2014.
+ * Created by Vsevolod on 11.07.2014.
  */
 public class WidgetParser
 {

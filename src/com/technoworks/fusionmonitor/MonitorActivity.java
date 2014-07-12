@@ -16,10 +16,15 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+import com.technoworks.fusionmonitor.controller.SimulationThread;
+import com.technoworks.fusionmonitor.model.LoggerList;
+import com.technoworks.fusionmonitor.view.RemoveLayoutDialogFragment;
+import com.technoworks.fusionmonitor.view.SaveLayoutDialogFragment;
+import com.technoworks.fusionmonitor.view.widgets.Widget;
+import com.technoworks.fusionmonitor.view.widgets.WidgetParser;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class MonitorActivity extends Activity
