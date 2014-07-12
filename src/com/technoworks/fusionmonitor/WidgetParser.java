@@ -13,14 +13,15 @@ import java.util.Map;
 public class WidgetParser
 {
     public static final String TYPE_DEFAULT = "Default";
-    public static Map<String, Constructor<Widget>> TYPES;
+    public static Map<String, Constructor<?>> TYPES;
 
     public static void init()
     {
-        TYPES = new HashMap<String, Constructor<Widget>>();
+        TYPES = new HashMap<String, Constructor<?>>();
         try
         {
-            TYPES.put(Widget.getType(), Widget.class.getConstructor(Context.class));
+            TYPES.put(Widget.TYPE, Widget.class.getConstructor(Context.class));
+            TYPES.put(TextWidget.TYPE, TextWidget.class.getConstructor(Context.class));
         }
         catch (NoSuchMethodException e)
         {
@@ -38,7 +39,7 @@ public class WidgetParser
                 jsonSettings.getInt("top"),
                 jsonSettings.getInt("right"),
                 jsonSettings.getInt("bottom"));
-        widget.applySettings(jsonSettings.getJSONObject("settings"));
+        widget.loadSettings(jsonSettings.getJSONObject("settings"));
         return widget;
     }
 
@@ -46,6 +47,6 @@ public class WidgetParser
     {
         if(!TYPES.containsKey(name))
             throw new Exception("No such widget type");
-        return TYPES.get(name).newInstance(context);
+        return (Widget) TYPES.get(name).newInstance(context);
     }
 }

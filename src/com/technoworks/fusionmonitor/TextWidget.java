@@ -15,14 +15,19 @@ import java.util.List;
  */
 public class TextWidget extends Widget
 {
+    public static final String TYPE = "Text";
     private final static int INDENT = 8;
-    protected final static int[] DEFAULT_SIZE = {2, 2};
 
     private final Paint mPaint;
     private final float mMaxTextSize;
     private final Rect mTextBounds;
     private final List<String> mText = new ArrayList<String>();
     private int mDrawCalls = 0;
+
+    public String getType()
+    {
+        return TYPE;
+    }
 
     public TextWidget(Context context)
     {

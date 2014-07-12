@@ -23,6 +23,7 @@ import org.json.JSONObject;
  */
 public class Widget extends View
 {
+    public static final String TYPE = "Default";
     public static final int PADDING_DP = 5;
     protected static final int[] DEFAULT_SIZE = {3, 3};
 
@@ -35,9 +36,9 @@ public class Widget extends View
 
     public Rect mPlacement;
 
-    public static String getType()
+    public String getType()
     {
-        return "Default";
+        return TYPE;
     }
 
     public Widget(Context context)
@@ -67,18 +68,13 @@ public class Widget extends View
         setPadding(mPadding, mPadding, mPadding, mPadding);
     }
 
-    protected void applySettings(JSONObject settings)
-    {
-        return;
-    }
-
-    protected void attachListener(OnTouchListener listener)
+    protected final void attachListener(OnTouchListener listener)
     {
         mInnerListener = listener;
         setOnTouchListener(mInnerListener);
     }
 
-    public String save()
+    public final String save()
     {
         JSONObject settings = new JSONObject();
         try
@@ -102,7 +98,12 @@ public class Widget extends View
         return new JSONObject();
     }
 
-    public void setEditMode(boolean editMode)
+    protected void loadSettings(JSONObject settings)
+    {
+        return;
+    }
+
+    public final void setEditMode(boolean editMode)
     {
         mIsInEditMode = editMode;
         if (editMode)
@@ -111,32 +112,32 @@ public class Widget extends View
             setOnTouchListener(mInnerListener);
     }
 
-    protected void setPlacement()
+    public final void setPlacement()
     {
         setX(mMonitorActivity.mCellWidth * mPlacement.left);
         setY(mMonitorActivity.mCellHeight * mPlacement.top);
         setLayoutParams(new RelativeLayout.LayoutParams((int) (mMonitorActivity.mCellWidth * mPlacement.width()), (int) (mMonitorActivity.mCellHeight * mPlacement.height())));
     }
 
-    protected void move(int left, int top, int right, int bottom)
+    protected final void move(int left, int top, int right, int bottom)
     {
         mPlacement.set(left, top, right, bottom);
         setPlacement();
     }
 
-    protected void move(Rect r)
+    protected final void move(Rect r)
     {
         mPlacement.set(r);
         setPlacement();
     }
 
-    protected void move(int left, int top)
+    public final void move(int left, int top)
     {
         mPlacement.offsetTo(left, top);
         setPlacement();
     }
 
-    protected class EditModeTouchListener implements OnTouchListener
+    protected final class EditModeTouchListener implements OnTouchListener
     {
         public static final int MODE_DRAG = 0;
         public static final int MODE_RESIZE_TOP = 1;
