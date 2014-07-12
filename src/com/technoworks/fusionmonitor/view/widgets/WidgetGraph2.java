@@ -21,8 +21,9 @@ public class WidgetGraph2 extends Widget
 {
     public static final String TYPE = "Graph2";
 
-    public ArrayList<Double> values = new ArrayList<Double>();
+    public ArrayList<Float> values = new ArrayList<Float>();
     private Paint backgroundPaint = new Paint();
+    private Paint foregroundPaint = new Paint();
     private RectF graphBounds = new RectF();
 
     public WidgetGraph2(Context context)
@@ -30,8 +31,19 @@ public class WidgetGraph2 extends Widget
         super(context);
 
         this.backgroundPaint.setColor(Color.BLACK);
+        this.foregroundPaint.setColor(Color.GREEN);
+
         refreshSizes(DEFAULT_SIZE[0] * mMonitorActivity.mCellWidth,
                      DEFAULT_SIZE[1] * mMonitorActivity.mCellHeight);
+
+        values.add(10f);
+        values.add(129f);
+        values.add(150f);
+        values.add(152f);
+        values.add(12f);
+        values.add(69f);
+        values.add(200f);
+        values.add(70f);
     }
 
     @Override
@@ -49,6 +61,23 @@ public class WidgetGraph2 extends Widget
         canvas.save();
         {
             canvas.drawRect(graphBounds, backgroundPaint);
+
+            canvas.translate(graphBounds.left, graphBounds.top);
+
+            float maxval = 0;
+            for(float val : this.values) if(val > maxval) maxval = val;
+
+            float w = (graphBounds.right - graphBounds.left),
+                  h = (graphBounds.bottom - graphBounds.top);
+
+            for(int i = 0; i < this.values.size() - 1; i++)
+            {
+                float sx = i * (w / (this.values.size() - 1)),
+                      ex = (i + 1) * (w / (this.values.size() - 1)),
+                      sy = h - (this.values.get(i) * (h / maxval)),
+                      ey = h - (this.values.get(i + 1) * (h / maxval));
+                canvas.drawLine(sx, sy, ex, ey, foregroundPaint);
+            }
         }
         canvas.restore();
     }
