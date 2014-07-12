@@ -135,6 +135,14 @@ public class Widget extends View
         setPlacement();
     }
 
+	/**
+	 * Called every time the widget is resized
+	 */
+	protected void onResized()
+	{
+
+	}
+
     protected final class EditModeTouchListener implements OnTouchListener
     {
         public static final int MODE_DRAG = 0;
@@ -157,6 +165,9 @@ public class Widget extends View
         @Override
         public boolean onTouch(View v, MotionEvent event)
         {
+			if(!(v instanceof Widget)) return false;
+			Widget w = (Widget) v;
+
             if (event.getActionMasked() == MotionEvent.ACTION_DOWN)
             {
                 mMode = 0;
@@ -189,26 +200,30 @@ public class Widget extends View
                     dy = event.getY() - mRelativeInitY;
                     v.setY(v.getY() + dy);
                     v.setLayoutParams(new RelativeLayout.LayoutParams(v.getLayoutParams().width, Math.round(v.getLayoutParams().height - dy)));
-                }
+                	w.onResized();
+				}
 
                 if ((mMode & MODE_RESIZE_LEFT) == MODE_RESIZE_LEFT)
                 {
                     dx = event.getX() - mRelativeInitX;
                     v.setX(v.getX() + dx);
                     v.setLayoutParams(new RelativeLayout.LayoutParams(Math.round(v.getLayoutParams().width - dx), v.getLayoutParams().height));
-                }
+                	w.onResized();
+				}
 
                 if ((mMode & MODE_RESIZE_BOTTOM) == MODE_RESIZE_BOTTOM)
                 {
                     dy = event.getY() - mRelativeInitY;
                     v.setLayoutParams(new RelativeLayout.LayoutParams(v.getLayoutParams().width, (int) (mInitHeight + dy)));
-                }
+					w.onResized();
+				}
 
                 if ((mMode & MODE_RESIZE_RIGHT) == MODE_RESIZE_RIGHT)
                 {
                     dx = event.getX() - mRelativeInitX;
                     v.setLayoutParams(new RelativeLayout.LayoutParams((int) (mInitWidth + dx), v.getLayoutParams().height));
-                }
+					w.onResized();
+				}
 
                 return true;
             }
@@ -222,6 +237,7 @@ public class Widget extends View
                 ((Widget) v).move(left, top, right, bottom);
                 if (!mMonitorActivity.checkPlacement((Widget) v))
                     ((Widget) v).move(oldPlacement);
+				w.onResized();
             }
             return false;
         }

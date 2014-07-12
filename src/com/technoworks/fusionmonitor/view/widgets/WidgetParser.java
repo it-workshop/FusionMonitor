@@ -23,7 +23,8 @@ public class WidgetParser
         try
         {
             TYPES.put(Widget.TYPE, Widget.class.getConstructor(Context.class));
-            TYPES.put(TextWidget.TYPE, TextWidget.class.getConstructor(Context.class));
+			TYPES.put(TextWidget.TYPE, TextWidget.class.getConstructor(Context.class));
+			TYPES.put(WidgetGraph2.TYPE, WidgetGraph2.class.getConstructor(Context.class));
         }
         catch (NoSuchMethodException e)
         {
