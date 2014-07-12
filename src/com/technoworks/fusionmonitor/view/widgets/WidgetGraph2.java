@@ -30,10 +30,8 @@ public class WidgetGraph2 extends Widget
         super(context);
 
         this.backgroundPaint.setColor(Color.BLACK);
-        this.graphBounds.set(PADDING_DP + 8,
-                             PADDING_DP + 8,
-                             DEFAULT_SIZE[0] * MonitorActivity.APPROXIMATE_CELL_SIZE_DP * mMonitorActivity.mScreenDensity - (PADDING_DP * 2) - 8,
-                             DEFAULT_SIZE[1] * MonitorActivity.APPROXIMATE_CELL_SIZE_DP * mMonitorActivity.mScreenDensity - (PADDING_DP * 2) - 8);
+        refreshSizes(DEFAULT_SIZE[0] * mMonitorActivity.mCellWidth,
+                     DEFAULT_SIZE[1] * mMonitorActivity.mCellHeight);
     }
 
     @Override
@@ -41,10 +39,7 @@ public class WidgetGraph2 extends Widget
     {
         if(this.getLayoutParams() != null)
         {
-            this.graphBounds.set(PADDING_DP + 8,
-                                 PADDING_DP + 8,
-                                 this.getLayoutParams().width  - (PADDING_DP * 2) - 8,
-                                 this.getLayoutParams().height - (PADDING_DP * 2) - 8);
+            refreshSizes(this.getLayoutParams().width, this.getLayoutParams().height);
         }
     }
 
@@ -56,5 +51,13 @@ public class WidgetGraph2 extends Widget
             canvas.drawRect(graphBounds, backgroundPaint);
         }
         canvas.restore();
+    }
+
+    protected void refreshSizes(float w, float h)
+    {
+        this.graphBounds.set(this.getPaddingLeft() + 8,
+                             this.getPaddingTop() + 8,
+                             w - (this.getPaddingRight()) - 8,
+                             h - (this.getPaddingBottom()) - 8);
     }
 }
