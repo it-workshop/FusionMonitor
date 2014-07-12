@@ -15,6 +15,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.RelativeLayout;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by Всеволод on 11.05.2014.
@@ -32,6 +34,11 @@ public class Widget extends View
     protected MonitorActivity mMonitorActivity;
 
     public Rect mPlacement;
+
+    public static String getType()
+    {
+        return "Default";
+    }
 
     public Widget(Context context)
     {
@@ -60,10 +67,39 @@ public class Widget extends View
         setPadding(mPadding, mPadding, mPadding, mPadding);
     }
 
-    public void attachListener(OnTouchListener listener)
+    protected void applySettings(JSONObject settings)
+    {
+        return;
+    }
+
+    protected void attachListener(OnTouchListener listener)
     {
         mInnerListener = listener;
         setOnTouchListener(mInnerListener);
+    }
+
+    public String save()
+    {
+        JSONObject settings = new JSONObject();
+        try
+        {
+            settings.put("type", getType());
+            settings.put("left", mPlacement.left);
+            settings.put("top", mPlacement.top);
+            settings.put("right", mPlacement.right);
+            settings.put("bottom", mPlacement.bottom);
+            settings.put("settings", saveSettings());
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+        return settings.toString();
+    }
+
+    protected JSONObject saveSettings()
+    {
+        return new JSONObject();
     }
 
     public void setEditMode(boolean editMode)

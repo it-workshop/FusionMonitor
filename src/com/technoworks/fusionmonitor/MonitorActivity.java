@@ -1,6 +1,7 @@
 package com.technoworks.fusionmonitor;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.*;
 import android.graphics.drawable.LayerDrawable;
@@ -12,16 +13,25 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class MonitorActivity extends Activity
 {
     public static final int APPROXIMATE_CELL_SIZE_DP = 50;
 
-    public RelativeLayout rootLayout;
+    private RelativeLayout mRootLayout;
+    private ArrayList<Widget> mWidgets;
+    public LoggerList mLog;
+    private SimulationThread mSimulationThread;
+    //public Map<String, ?> mLayouts;
+    public SharedPreferences mLayouts;
 
     public float mCellWidth;
     public float mCellHeight;
@@ -29,17 +39,19 @@ public class MonitorActivity extends Activity
     private int mRows;
     private Rect mBoundaries;
     private Point mDisplaySize;
-    private ArrayList<Widget> mWidgets;
     public float mScreenDensity;
+
     private boolean mEditMode;
     private boolean mSimulationOn;
-    public LoggerList mLog;
-    private SimulationThread mSimulationThread;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        WidgetParser.init();
+
+        mLayouts = getSharedPreferences("layouts", 0);
 
         mWidgets = new ArrayList<Widget>();
         mLog = new LoggerList(mWidgets);
@@ -88,27 +100,40 @@ public class MonitorActivity extends Activity
 
         LayerDrawable background = new LayerDrawable(backgroundElements);
 
-        rootLayout = new RelativeLayout(this);
-        rootLayout.setBackground(background);
+        mRootLayout = new RelativeLayout(this);
+        mRootLayout.setBackground(background);
 
-        setContentView(rootLayout);
+        setContentView(mRootLayout);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.menu, menu);
+
+        SubMenu widgetsSubMenu = menu.findItem(R.id.add_widget).getSubMenu();
+        for(String widgetName : WidgetParser.TYPES.keySet())
+            widgetsSubMenu.add(R.id.add_widget_menu, Menu.NONE, Menu.NONE, widgetName);
+
+
+
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        switch (item.getGroupId())
+        {
+            case R.id.add_widget_menu:
+                addWidget((String) item.getTitle());
+                return true;
+            case R.id.load_layout_menu:
+                loadLayout((String) item.getTitle());
+                return true;
+        }
         switch (item.getItemId())
         {
-            case R.id.add_empty:
-                addWidget();
-                return true;
             case R.id.edit_mode:
                 mEditMode = !mEditMode;
                 item.setTitle(mEditMode ? R.string.edit_mode_on : R.string.edit_mode_off);
@@ -128,6 +153,18 @@ public class MonitorActivity extends Activity
                     mSimulationThread.finish();
                 }
                 return true;
+            case R.id.save_layout:
+                showSaveDialog();
+                return true;
+            case R.id.load_layout:
+                SubMenu layoutsSubMenu = item.getSubMenu();
+                layoutsSubMenu.clear();
+                for(String layoutName : mLayouts.getAll().keySet())
+                    layoutsSubMenu.add(R.id.load_layout_menu, Menu.NONE, Menu.NONE, layoutName);
+                return true;
+            case R.id.remove_layout:
+                showRemoveDialog();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -141,19 +178,25 @@ public class MonitorActivity extends Activity
         return line;
     }
 
-    private void addWidget()
+    private void addWidget(String widgetName)
     {
-        //Widget widget = new Widget(this);
-        Widget widget = new TextWidget(this);
-        if (!findPlacement(widget))
+        try
         {
-            Toast.makeText(this, "No room for new widget", Toast.LENGTH_SHORT).show();
-            return;
+            Widget widget = WidgetParser.parseFromName(this, widgetName);
+            if (!findPlacement(widget))
+            {
+                Toast.makeText(this, "No room for new widget", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            widget.setPlacement();
+            widget.setEditMode(mEditMode);
+            mRootLayout.addView(widget);
+            mWidgets.add(widget);
         }
-        widget.setPlacement();
-        widget.setEditMode(mEditMode);
-        rootLayout.addView(widget);
-        mWidgets.add(widget);
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     private boolean findPlacement(Widget fittingWidget)
@@ -174,7 +217,7 @@ public class MonitorActivity extends Activity
             return false;
         if (checkingWidget.mPlacement.height() == 0 && checkingWidget.mPlacement.width() == 0)
         {
-            rootLayout.removeView(checkingWidget);
+            mRootLayout.removeView(checkingWidget);
             mWidgets.remove(checkingWidget);
             return true;
         }
@@ -188,6 +231,54 @@ public class MonitorActivity extends Activity
                 return false;
         }
         return true;
+    }
+
+    private void showSaveDialog()
+    {
+        SaveLayoutDialogFragment saveDialog = new SaveLayoutDialogFragment();
+        saveDialog.show(getFragmentManager(), "saveDialog");
+    }
+
+    private void showRemoveDialog()
+    {
+        RemoveLayoutDialogFragment removeDialog = new RemoveLayoutDialogFragment();
+        removeDialog.show(getFragmentManager(), "removeDialog");
+    }
+
+    public boolean saveLayout(String name)
+    {
+        if(mLayouts.getAll().containsKey(name))
+            return false;
+        Set<String> layout = new HashSet<String>(mWidgets.size());
+        for(Widget widget : mWidgets)
+        {
+            layout.add(widget.save());
+        }
+        SharedPreferences.Editor editor = mLayouts.edit();
+        editor.putStringSet(name, layout);
+        editor.commit();
+        return true;
+    }
+
+    private void loadLayout(String name)
+    {
+        mRootLayout.removeAllViews();
+        mWidgets.clear();
+        for(String widgetSettings : (Set<String>) mLayouts.getAll().get(name))
+        {
+            try
+            {
+                Widget widget = WidgetParser.parseJSON(this, widgetSettings);
+                widget.setPlacement();
+                widget.setEditMode(mEditMode);
+                mRootLayout.addView(widget);
+                mWidgets.add(widget);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 }
 

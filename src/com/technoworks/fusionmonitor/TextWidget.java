@@ -16,6 +16,7 @@ import java.util.List;
 public class TextWidget extends Widget
 {
     private final static int INDENT = 8;
+    protected final static int[] DEFAULT_SIZE = {2, 2};
 
     private final Paint mPaint;
     private final float mMaxTextSize;

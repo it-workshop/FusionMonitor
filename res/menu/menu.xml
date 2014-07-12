@@ -5,12 +5,36 @@
           android:icon="@drawable/ic_action_edit"
           android:title="@string/edit_mode_off"
           android:showAsAction="withText|ifRoom"/>
-    <item android:id="@+id/add_empty"
+
+    <item android:id="@+id/add_widget"
           android:icon="@drawable/ic_action_new"
           android:title="Add empty widget"
-          android:showAsAction="ifRoom"/>
+          android:showAsAction="ifRoom">
+        <menu>
+            <group android:id="@+id/add_widget_menu"/>
+        </menu>
+    </item>
+
     <item android:id="@+id/toggle_simulation"
           android:icon="@drawable/ic_action_play"
           android:title="Toggle simulation"
           android:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/load_layout"
+          android:icon="@drawable/ic_action_collection"
+          android:title="Load layout"
+          android:showAsAction="ifRoom">
+        <menu>
+            <group android:id="@+id/load_layout_menu"/>
+        </menu>
+    </item>
+
+    <item android:id="@+id/save_layout"
+          android:icon="@drawable/ic_action_save"
+          android:title="Save layout"
+          android:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/remove_layout"
+          android:title="Remove layout"
+          android:showAsAction="never"/>
 </menu>
