@@ -11,10 +11,10 @@ import java.util.Map;
 
 /**
  * Created by Vsevolod on 11.07.2014.
+ * Helper class for creating widgets
  */
 public class WidgetParser
 {
-    public static final String TYPE_DEFAULT = "Default";
     public static Map<String, Constructor<?>> TYPES;
 
     public static void init()

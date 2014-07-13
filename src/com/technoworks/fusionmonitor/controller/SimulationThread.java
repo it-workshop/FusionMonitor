@@ -5,6 +5,8 @@ import com.technoworks.fusionmonitor.model.LoggerList;
 
 /**
  * Created by Vsevolod on 01.07.2014.
+ * Temporary class for debugging purposes
+ * Pushes the same sinusoid in all telemetry fields
  */
 public class SimulationThread extends Thread
 {
