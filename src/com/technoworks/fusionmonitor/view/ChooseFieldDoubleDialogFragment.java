@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 /**
  * Created by Vsevolod on 13.07.2014.
  * Dialog for choosing a telemetry field to display.
- * Widget must implement listener, which returns field signature.
+ * Listener returns field signature.
  */
 public class ChooseFieldDoubleDialogFragment extends DialogFragment
 {
@@ -21,9 +21,9 @@ public class ChooseFieldDoubleDialogFragment extends DialogFragment
     private LinkedHashMap<String, Integer> mNames = new LinkedHashMap<String, Integer>();
     String[] mNamesArray;
 
-    public ChooseFieldDoubleDialogFragment(Widget widget)
+    public ChooseFieldDoubleDialogFragment(ChooseFieldDoubleDialogListener listener)
     {
-        mListener = (ChooseFieldDoubleDialogListener) widget;
+        mListener = listener;
     }
 
     @Override
