@@ -35,7 +35,6 @@ public class MonitorActivity extends Activity
     private ArrayList<Widget> mWidgets;
     public LoggerList mLog;
     private SimulationThread mSimulationThread;
-    //public Map<String, ?> mLayouts;
     public SharedPreferences mLayouts;
 
     public float mCellWidth;
@@ -55,6 +54,7 @@ public class MonitorActivity extends Activity
         super.onCreate(savedInstanceState);
 
         WidgetParser.init();
+        MessagingHelper.init();
 
         mLayouts = getSharedPreferences("layouts", 0);
 

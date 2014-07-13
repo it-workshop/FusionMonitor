@@ -1,20 +1,20 @@
 package com.technoworks.fusionmonitor;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
- * Created by Всеволод on 13.07.2014.
+ * Created by Vsevolod on 13.07.2014.
+ * Helper for getting telemetry field from its signature
  */
 public class MessagingHelper
 {
-    public static Map<Integer, FieldDouble> DOUBLES;
-    public static Map<Integer, FieldVector> VECTORS;
-    public static Map<Integer, FieldPID> PIDS;
+    public static LinkedHashMap<Integer, FieldDouble> DOUBLES;
+    public static LinkedHashMap<Integer, FieldVector> VECTORS;
+    public static LinkedHashMap<Integer, FieldPID> PIDS;
 
     public static void init()
     {
-        DOUBLES = new HashMap<Integer, FieldDouble>();
+        DOUBLES = new LinkedHashMap<Integer, FieldDouble>();
 
         DOUBLES.put(21, new FieldDouble("Torques.x", new GetterDouble() {
             @Override
@@ -166,7 +166,7 @@ public class MessagingHelper
             }
         }));
 
-        VECTORS = new HashMap<Integer, FieldVector>();
+        VECTORS = new LinkedHashMap<Integer, FieldVector>();
 
         VECTORS.put(1, new FieldVector("Torques", new GetterVector() {
             @Override
@@ -184,7 +184,7 @@ public class MessagingHelper
             }
         }));
 
-        PIDS = new HashMap<Integer, FieldPID>();
+        PIDS = new LinkedHashMap<Integer, FieldPID>();
 
         PIDS.put(1, new FieldPID("PID values x", new GetterPID() {
             @Override
@@ -211,28 +211,28 @@ public class MessagingHelper
         }));
     }
 
-    public double getDouble(Messaging.Telemetry telemetry, int signature)
+    public static double getDouble(Messaging.Telemetry telemetry, int signature)
     {
         if(!DOUBLES.containsKey(signature))
             return 0;
         return DOUBLES.get(signature).mGetter.get(telemetry);
     }
 
-    public Messaging.Vector getVector(Messaging.Telemetry telemetry, int signature)
+    public static Messaging.Vector getVector(Messaging.Telemetry telemetry, int signature)
     {
         if(!VECTORS.containsKey(signature))
             return null;
         return VECTORS.get(signature).mGetter.get(telemetry);
     }
 
-    public Messaging.PIDValues getPID(Messaging.Telemetry telemetry, int signature)
+    public static Messaging.PIDValues getPID(Messaging.Telemetry telemetry, int signature)
     {
         if(!PIDS.containsKey(signature))
             return null;
         return PIDS.get(signature).mGetter.get(telemetry);
     }
 
-    private static class FieldDouble
+    public static class FieldDouble
     {
         public String mName;
         public GetterDouble mGetter;
@@ -249,7 +249,7 @@ public class MessagingHelper
         public double get(Messaging.Telemetry telemetry);
     }
 
-    private static class FieldVector
+    public static class FieldVector
     {
         public String mName;
         public GetterVector mGetter;
@@ -266,7 +266,7 @@ public class MessagingHelper
         public Messaging.Vector get(Messaging.Telemetry telemetry);
     }
 
-    private static class FieldPID
+    public static class FieldPID
     {
         public String mName;
         public GetterPID mGetter;
