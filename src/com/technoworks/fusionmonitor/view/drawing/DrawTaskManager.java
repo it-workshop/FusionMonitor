@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Vsevolod on 03.07.2014.
+ * Class which ensures that only one draw task is running at the same time
  */
 public class DrawTaskManager
 {

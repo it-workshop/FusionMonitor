@@ -12,6 +12,7 @@ import com.technoworks.fusionmonitor.MonitorActivity;
 
 /**
  * Created by Vsevolod on 11.07.2014.
+ * Dialog for entering a name for layout to save
  */
 public class SaveLayoutDialogFragment extends DialogFragment
 {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Vsevolod on 03.07.2014.
+ * Asynchronous task which triggers draw for all widgets
  */
 public class Draw extends AsyncTask<Void, Void, Void>
 {

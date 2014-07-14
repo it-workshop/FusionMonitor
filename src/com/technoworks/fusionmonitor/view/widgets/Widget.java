@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 /**
  * Created by Vsevolod on 11.05.2014.
+ * Widget base class, implements basic features
  */
 public class Widget extends View
 {

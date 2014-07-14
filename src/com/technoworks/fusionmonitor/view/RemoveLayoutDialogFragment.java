@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Vsevolod on 11.07.2014.
+ * Dialog for choosing layouts to remove
  */
 public class RemoveLayoutDialogFragment extends DialogFragment
 {

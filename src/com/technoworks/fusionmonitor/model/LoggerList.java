@@ -14,6 +14,7 @@ import static com.technoworks.fusionmonitor.Messaging.Telemetry;
 
 /**
  * Created by Vsevolod on 18.06.2014.
+ * Class for storing incoming telemetry and getting last telemetry values for widgets
  */
 public class LoggerList extends LinkedList<Telemetry>
 {
