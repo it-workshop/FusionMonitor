@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 
 /**
  * Created by loredan on 21.07.14.
+ * Класс-хелпер для управления настройками коптера
  */
 public class CopterSettings
 {
@@ -52,7 +53,7 @@ public class CopterSettings
         editor.commit();
     }
 
-    public static LinkedHashSet<String> getFields()
+    public static LinkedHashSet<String> getFieldNames()
     {
         LinkedHashSet<String> fields = (LinkedHashSet<String>) mSettings.getAll().keySet();
         fields.remove("version");
