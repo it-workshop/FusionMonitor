@@ -63,8 +63,8 @@ public class TextWidget extends Widget implements ChooseFieldDoubleDialogFragmen
         float max = 0;
         float w = 1.0f / canvas.getWidth();
 
+        mPaint.setTextSize(100);
         mPaint.getTextBounds(mText, 0, mText.length(), mTextBounds);
-        mTextBounds.set(0,0,(int)((canvas.getWidth() - getPaddingLeft() - getPaddingRight())*INSET_MULTIPLIER), (int) ((canvas.getHeight() - getPaddingTop() - getPaddingBottom())* INSET_MULTIPLIER));
         float xScale = (canvas.getWidth() - getPaddingLeft() - getPaddingRight())*INSET_MULTIPLIER/mTextBounds.width();
         float yScale = (canvas.getHeight() - getPaddingTop() - getPaddingBottom())* INSET_MULTIPLIER/mTextBounds.height();
 
@@ -75,7 +75,7 @@ public class TextWidget extends Widget implements ChooseFieldDoubleDialogFragmen
         float mTextHeightMiddle = mTextBounds.height()*mash/2;
         float canvasWidthMiddle = canvas.getWidth()/2;
         float canvasHeightMiddle = canvas.getHeight()/2;
-        canvas.drawText(mText, canvasWidthMiddle - mTextWidthMiddle, canvasHeightMiddle - mTextHeightMiddle, mPaint);
+        canvas.drawText(mText, canvasWidthMiddle - mTextWidthMiddle, canvasHeightMiddle + mTextHeightMiddle, mPaint);
     }
 
     protected void updateText()
