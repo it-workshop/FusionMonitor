@@ -19,7 +19,6 @@ import com.technoworks.fusionmonitor.view.ChooseFieldDoubleDialogFragment;
 public class TextWidget extends Widget implements ChooseFieldDoubleDialogFragment.ChooseFieldDoubleDialogListener
 {
     public static final String TYPE = "Text";
-    private final static int INDENT = 8;
     private static final float INSET_MULTIPLIER = 0.8f;
 
     private final Paint mPaint;
@@ -59,9 +58,6 @@ public class TextWidget extends Widget implements ChooseFieldDoubleDialogFragmen
             i = 6;
         }
         mText = mText.substring(0, i > mText.length() ? mText.length() : i);
-
-        float max = 0;
-        float w = 1.0f / canvas.getWidth();
 
         mPaint.setTextSize(100);
         mPaint.getTextBounds(mText, 0, mText.length(), mTextBounds);
