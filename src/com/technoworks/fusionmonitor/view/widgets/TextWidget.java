@@ -11,9 +11,6 @@ import com.technoworks.fusionmonitor.MessagingHelper;
 import com.technoworks.fusionmonitor.MonitorActivity;
 import com.technoworks.fusionmonitor.view.ChooseFieldDoubleDialogFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * тестовый виджет.
  * Можно перегрузить updateText() и выводить другой текст.
@@ -23,11 +20,12 @@ public class TextWidget extends Widget implements ChooseFieldDoubleDialogFragmen
 {
     public static final String TYPE = "Text";
     private final static int INDENT = 8;
+    private static final float INSET_MULTIPLIER = 0.8f;
 
     private final Paint mPaint;
     private final float mMaxTextSize;
     private final Rect mTextBounds;
-    private final List<String> mText = new ArrayList<String>();
+    private float mTextForMonitor;
     private int mFieldSignature = 0;
 
     public String getType()
@@ -51,29 +49,38 @@ public class TextWidget extends Widget implements ChooseFieldDoubleDialogFragmen
     @Override
     protected void onDraw(Canvas canvas)
     {
+        String mText = Float.toString(mTextForMonitor);
         updateText();
+        int i;
+        if (mText.contains(",")) {
+            i = 7;
+        }
+        else {
+            i = 6;
+        }
+        mText = mText.substring(0, i > mText.length() ? mText.length() : i);
 
         float max = 0;
         float w = 1.0f / canvas.getWidth();
-        for (String s : mText)
-        {
-            mPaint.getTextBounds(s, 0, s.length(), mTextBounds);
-            max = Math.max((float) (mTextBounds.width() + 2 * INDENT + getPaddingLeft() + getPaddingRight()) * w, max);
-        }
 
-        float textSize = Math.min((mPaint.getTextSize() -1) / max, mMaxTextSize);
+        mPaint.getTextBounds(mText, 0, mText.length(), mTextBounds);
+        mTextBounds.set(0,0,(int)((canvas.getWidth() - getPaddingLeft() - getPaddingRight())*INSET_MULTIPLIER), (int) ((canvas.getHeight() - getPaddingTop() - getPaddingBottom())* INSET_MULTIPLIER));
+        float xScale = (canvas.getWidth() - getPaddingLeft() - getPaddingRight())*INSET_MULTIPLIER/mTextBounds.width();
+        float yScale = (canvas.getHeight() - getPaddingTop() - getPaddingBottom())* INSET_MULTIPLIER/mTextBounds.height();
+
+        float mash = xScale < yScale ? xScale : yScale;
+        float textSize = mPaint.getTextSize()*mash;
         mPaint.setTextSize(textSize);
-
-        for (int i = 0; i < mText.size(); i++)
-        {
-            canvas.drawText(mText.get(i), INDENT + getPaddingLeft(), mTextBounds.height() * (i + 1) + getPaddingTop() + INDENT, mPaint);
-        }
+        float mTextWidthMiddle = mTextBounds.width()*mash/2;
+        float mTextHeightMiddle = mTextBounds.height()*mash/2;
+        float canvasWidthMiddle = canvas.getWidth()/2;
+        float canvasHeightMiddle = canvas.getHeight()/2;
+        canvas.drawText(mText, canvasWidthMiddle - mTextWidthMiddle, canvasHeightMiddle - mTextHeightMiddle, mPaint);
     }
 
     protected void updateText()
     {
-        mText.clear();
-        mText.add(String.valueOf(MessagingHelper.getDouble(mMonitorActivity.mLog.getLastOne(), mFieldSignature)));
+        mTextForMonitor = (float) MessagingHelper.getDouble(mMonitorActivity.mLog.getLastOne(), mFieldSignature);
     }
 
     @Override
