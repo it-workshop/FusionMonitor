@@ -1,8 +1,6 @@
 package com.technoworks.fusionmonitor.view.widgets;
 
 import android.content.Context;
-import com.technoworks.fusionmonitor.view.widgets.TextWidget;
-import com.technoworks.fusionmonitor.view.widgets.Widget;
 import org.json.JSONObject;
 
 import java.lang.reflect.Constructor;
@@ -24,6 +22,7 @@ public class WidgetParser
         {
             TYPES.put(Widget.TYPE, Widget.class.getConstructor(Context.class));
             TYPES.put(TextWidget.TYPE, TextWidget.class.getConstructor(Context.class));
+            TYPES.put(SliderWidget.TYPE, SliderWidget.class.getConstructor(Context.class)); // 1 means HORIZONTAL
         }
         catch (NoSuchMethodException e)
         {

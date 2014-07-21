@@ -30,11 +30,6 @@ public class TextWidget extends Widget implements ChooseFieldDoubleDialogFragmen
     private final List<String> mText = new ArrayList<String>();
     private int mFieldSignature = 0;
 
-    public String getType()
-    {
-        return TYPE;
-    }
-
     public TextWidget(Context context)
     {
         super(context);
@@ -43,9 +38,14 @@ public class TextWidget extends Widget implements ChooseFieldDoubleDialogFragmen
 
         mPaint = new Paint();
         mPaint.setColor(0xFF000000);
-        mMaxTextSize = 2* mPaint.getTextSize() * ((MonitorActivity) context).mScreenDensity;
+        mMaxTextSize = 2 * mPaint.getTextSize() * ((MonitorActivity) context).mScreenDensity;
         mPaint.setTextSize(mMaxTextSize);
         mTextBounds = new Rect();
+    }
+
+    public String getType()
+    {
+        return TYPE;
     }
 
     @Override
